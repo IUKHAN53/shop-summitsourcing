@@ -10,31 +10,11 @@
                                 <ul>
                                     @foreach($categories as $category)
                                         <li>
-                                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-1.svg" alt="" />{{$category->name}}</a>
+                                            <a href="#"> <img src="assets/imgs/theme/icons/category-{{$loop->iteration}}.svg" alt="" />{{$category->name}}</a>
                                         </li>
                                     @endforeach
-
                                 </ul>
                             </div>
-                            <div class="more_slide_open" style="display: none">
-                                <div class="d-flex categori-dropdown-inner">
-                                    <ul>
-                                        <li>
-                                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/icon-1.svg" alt="" />Milks and Dairies</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/icon-2.svg" alt="" />Clothing & beauty</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/icon-3.svg" alt="" />Wines & Drinks</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/icon-4.svg" alt="" />Fresh Seafood</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1">Show more...</span></div>
                         </div>
                     </div>
                     <div class="col-lg-7">
@@ -107,166 +87,27 @@
                 <div class="section-title">
                     <div class="title">
                         <h3>Featured Categories</h3>
-                        <ul class="list-inline nav nav-tabs links">
-                            <li class="list-inline-item nav-item"><a class="nav-link" href="shop-grid-right.html">Cake & Milk</a></li>
-                            <li class="list-inline-item nav-item"><a class="nav-link" href="shop-grid-right.html">Coffes & Teas</a></li>
-                            <li class="list-inline-item nav-item"><a class="nav-link active" href="shop-grid-right.html">Pet Foods</a></li>
-                            <li class="list-inline-item nav-item"><a class="nav-link" href="shop-grid-right.html">Vegetables</a></li>
-                        </ul>
                     </div>
                     <div class="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow" id="carausel-10-columns-arrows"></div>
                 </div>
                 <div class="carausel-10-columns-cover position-relative">
                     <div class="carausel-10-columns" id="carausel-10-columns">
-                        <div class="card-2 bg-9 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
-                            <figure class="img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="assets/imgs/shop/cat-13.png" alt="" /></a>
-                            </figure>
-                            <h6><a href="shop-grid-right.html">Cake & Milk</a></h6>
-                            <span>26 items</span>
-                        </div>
-                        <div class="card-2 bg-10 wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
-                            <figure class="img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="assets/imgs/shop/cat-12.png" alt="" /></a>
-                            </figure>
-                            <h6><a href="shop-grid-right.html">Oganic Kiwi</a></h6>
-                            <span>28 items</span>
-                        </div>
-                        <div class="card-2 bg-11 wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
-                            <figure class="img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="assets/imgs/shop/cat-11.png" alt="" /></a>
-                            </figure>
-                            <h6><a href="shop-grid-right.html">Peach</a></h6>
-                            <span>14 items</span>
-                        </div>
-                        <div class="card-2 bg-12 wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
-                            <figure class="img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="assets/imgs/shop/cat-9.png" alt="" /></a>
-                            </figure>
-                            <h6><a href="shop-grid-right.html">Red Apple</a></h6>
-                            <span>54 items</span>
-                        </div>
-                        <div class="card-2 bg-13 wow animate__animated animate__fadeInUp" data-wow-delay=".5s">
-                            <figure class="img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="assets/imgs/shop/cat-3.png" alt="" /></a>
-                            </figure>
-                            <h6><a href="shop-grid-right.html">Snack</a></h6>
-                            <span>56 items</span>
-                        </div>
-                        <div class="card-2 bg-14 wow animate__animated animate__fadeInUp" data-wow-delay=".6s">
-                            <figure class="img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="assets/imgs/shop/cat-1.png" alt="" /></a>
-                            </figure>
-                            <h6><a href="shop-grid-right.html">Vegetables</a></h6>
-                            <span>72 items</span>
-                        </div>
-                        <div class="card-2 bg-15 wow animate__animated animate__fadeInUp" data-wow-delay=".7s">
-                            <figure class="img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="assets/imgs/shop/cat-2.png" alt="" /></a>
-                            </figure>
-                            <h6><a href="shop-grid-right.html">Strawberry</a></h6>
-                            <span>36 items</span>
-                        </div>
-                        <div class="card-2 bg-12 wow animate__animated animate__fadeInUp" data-wow-delay=".8s">
-                            <figure class="img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="assets/imgs/shop/cat-4.png" alt="" /></a>
-                            </figure>
-                            <h6><a href="shop-grid-right.html">Black plum</a></h6>
-                            <span>123 items</span>
-                        </div>
-                        <div class="card-2 bg-10 wow animate__animated animate__fadeInUp" data-wow-delay=".9s">
-                            <figure class="img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="assets/imgs/shop/cat-5.png" alt="" /></a>
-                            </figure>
-                            <h6><a href="shop-grid-right.html">Custard apple</a></h6>
-                            <span>34 items</span>
-                        </div>
-                        <div class="card-2 bg-12 wow animate__animated animate__fadeInUp" data-wow-delay="1s">
-                            <figure class="img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="assets/imgs/shop/cat-14.png" alt="" /></a>
-                            </figure>
-                            <h6><a href="shop-grid-right.html">Coffe & Tea</a></h6>
-                            <span>89 items</span>
-                        </div>
-                        <div class="card-2 bg-11 wow animate__animated animate__fadeInUp" data-wow-delay="0s">
-                            <figure class="img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="assets/imgs/shop/cat-15.png" alt="" /></a>
-                            </figure>
-                            <h6><a href="shop-grid-right.html">Headphone</a></h6>
-                            <span>87 items</span>
-                        </div>
+                        @foreach($categories as $category)
+                            <div class="card-2 bg-9 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
+                                <figure class="img-hover-scale overflow-hidden">
+                                    <a href=#"><img src="assets/imgs/theme/icons/category-13.png" alt="" /></a>
+                                </figure>
+                                <h6><a href="#">{{$category->name}}</a></h6>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </section>
-        <!--End category slider-->
-        <section class="banners mb-25">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="banner-img wow animate__animated animate__fadeInUp" data-wow-delay="0">
-                            <img src="assets/imgs/banner/banner-1.png" alt="" />
-                            <div class="banner-text">
-                                <h4>
-                                    Everyday Fresh & <br />Clean with Our<br />
-                                    Products
-                                </h4>
-                                <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="banner-img wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
-                            <img src="assets/imgs/banner/banner-2.png" alt="" />
-                            <div class="banner-text">
-                                <h4>
-                                    Make your Breakfast<br />
-                                    Healthy and Easy
-                                </h4>
-                                <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 d-md-none d-lg-flex">
-                        <div class="banner-img mb-sm-0 wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
-                            <img src="assets/imgs/banner/banner-3.png" alt="" />
-                            <div class="banner-text">
-                                <h4>The best Organic <br />Products Online</h4>
-                                <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--End banners-->
         <section class="product-tabs section-padding position-relative">
             <div class="container">
                 <div class="section-title style-2 wow animate__animated animate__fadeIn">
-                    <h3>Popular Products</h3>
-                    <ul class="nav nav-tabs links" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one" aria-selected="true">All</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="nav-tab-two" data-bs-toggle="tab" data-bs-target="#tab-two" type="button" role="tab" aria-controls="tab-two" aria-selected="false">Milks & Dairies</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="nav-tab-three" data-bs-toggle="tab" data-bs-target="#tab-three" type="button" role="tab" aria-controls="tab-three" aria-selected="false">Coffes & Teas</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="nav-tab-four" data-bs-toggle="tab" data-bs-target="#tab-four" type="button" role="tab" aria-controls="tab-four" aria-selected="false">Pet Foods</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="nav-tab-five" data-bs-toggle="tab" data-bs-target="#tab-five" type="button" role="tab" aria-controls="tab-five" aria-selected="false">Meats</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="nav-tab-six" data-bs-toggle="tab" data-bs-target="#tab-six" type="button" role="tab" aria-controls="tab-six" aria-selected="false">Vegetables</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="nav-tab-seven" data-bs-toggle="tab" data-bs-target="#tab-seven" type="button" role="tab" aria-controls="tab-seven" aria-selected="false">Fruits</button>
-                        </li>
-                    </ul>
+                    <h3>Hot Selling Products</h3>
                 </div>
                 <!--End nav-tabs-->
                 <div class="tab-content" id="myTabContent">
@@ -3382,79 +3223,13 @@
                 <!--End tab-content-->
             </div>
         </section>
-        <!--Products Tabs-->
-        <section class="section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="banner-img style-6 wow animate__animated animate__fadeInUp" data-wow-delay="0">
-                            <img src="assets/imgs/banner/banner-16.png" alt="" />
-                            <div class="banner-text">
-                                <h6 class="mb-10 mt-30">Everyday Fresh with<br />Our Products</h6>
-                                <p>Go to supplier</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="banner-img style-6 wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
-                            <img src="assets/imgs/banner/banner-17.png" alt="" />
-                            <div class="banner-text">
-                                <h6 class="mb-10 mt-30">100% guaranteed all<br />Fresh items</h6>
-                                <p>Go to supplier</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="banner-img style-6 wow animate__animated animate__fadeInUp" data-wow-delay="0.4s">
-                            <img src="assets/imgs/banner/banner-18.png" alt="" />
-                            <div class="banner-text">
-                                <h6 class="mb-10 mt-30">Special grocery sale<br />off this month</h6>
-                                <p>Go to supplier</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="banner-img style-6 wow animate__animated animate__fadeInUp" data-wow-delay="0.6s">
-                            <img src="assets/imgs/banner/banner-19.png" alt="" />
-                            <div class="banner-text">
-                                <h6 class="mb-10 mt-30">
-                                    Enjoy 15% OFF for all<br />
-                                    vegetable and fruit
-                                </h6>
-                                <p>Go to supplier</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--End 4 banners-->
         <section class="section-padding pb-5">
             <div class="container">
                 <div class="section-title wow animate__animated animate__fadeIn">
-                    <h3 class="">Daily Best Sells</h3>
-                    <ul class="nav nav-tabs links" id="myTab-2" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="nav-tab-one-1" data-bs-toggle="tab" data-bs-target="#tab-one-1" type="button" role="tab" aria-controls="tab-one" aria-selected="true">Featured</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="nav-tab-two-1" data-bs-toggle="tab" data-bs-target="#tab-two-1" type="button" role="tab" aria-controls="tab-two" aria-selected="false">Popular</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="nav-tab-three-1" data-bs-toggle="tab" data-bs-target="#tab-three-1" type="button" role="tab" aria-controls="tab-three" aria-selected="false">New added</button>
-                        </li>
-                    </ul>
+                    <h3 class="">Best Deals</h3>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3 d-none d-lg-flex wow animate__animated animate__fadeIn">
-                        <div class="banner-img style-2">
-                            <div class="banner-text">
-                                <h2 class="mb-100">Bring nature into your home</h2>
-                                <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i class="fi-rs-arrow-small-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9 col-md-12 wow animate__animated animate__fadeIn" data-wow-delay=".4s">
+                    <div class="wow animate__animated animate__fadeIn" data-wow-delay=".4s">
                         <div class="tab-content" id="myTabContent-1">
                             <div class="tab-pane fade show active" id="tab-one-1" role="tabpanel" aria-labelledby="tab-one-1">
                                 <div class="carausel-4-columns-cover arrow-center position-relative">
@@ -4236,8 +4011,8 @@
         <section class="section-padding mb-30">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0 wow animate__animated animate__fadeInUp" data-wow-delay="0">
-                        <h4 class="section-title style-1 mb-30 animated animated">Top Selling</h4>
+                    <div class="col-xl-4 col-lg-4 col-md-4 mb-sm-5 mb-md-0 wow animate__animated animate__fadeInUp" data-wow-delay="0">
+                        <h4 class="section-title style-1 mb-30 animated animated">Hot Selling</h4>
                         <div class="product-list-small animated animated">
                             <article class="row align-items-center hover-up">
                                 <figure class="col-md-4 mb-0">
@@ -4301,8 +4076,8 @@
                             </article>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6 mb-md-0 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
-                        <h4 class="section-title style-1 mb-30 animated animated">Trending Products</h4>
+                    <div class="col-xl-4 col-lg-4 col-md-4 mb-md-0 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
+                        <h4 class="section-title style-1 mb-30 animated animated">Top Deals</h4>
                         <div class="product-list-small animated animated">
                             <article class="row align-items-center hover-up">
                                 <figure class="col-md-4 mb-0">
@@ -4366,7 +4141,7 @@
                             </article>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0 d-none d-lg-block wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
+                    <div class="col-xl-4 col-lg-4 col-md-4 mb-sm-5 mb-md-0 d-none d-lg-block wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
                         <h4 class="section-title style-1 mb-30 animated animated">Recently added</h4>
                         <div class="product-list-small animated animated">
                             <article class="row align-items-center hover-up">
@@ -4431,74 +4206,8 @@
                             </article>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0 d-none d-xl-block wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
-                        <h4 class="section-title style-1 mb-30 animated animated">Top Rated</h4>
-                        <div class="product-list-small animated animated">
-                            <article class="row align-items-center hover-up">
-                                <figure class="col-md-4 mb-0">
-                                    <a href="shop-product-right.html"><img src="assets/imgs/shop/thumbnail-10.jpg" alt="" /></a>
-                                </figure>
-                                <div class="col-md-8 mb-0">
-                                    <h6>
-                                        <a href="shop-product-right.html">Foster Farms Takeout Crispy Classic Buffalo Wings</a>
-                                    </h6>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                    </div>
-                                    <div class="product-price">
-                                        <span>$32.85</span>
-                                        <span class="old-price">$33.8</span>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="row align-items-center hover-up">
-                                <figure class="col-md-4 mb-0">
-                                    <a href="shop-product-right.html"><img src="assets/imgs/shop/thumbnail-11.jpg" alt="" /></a>
-                                </figure>
-                                <div class="col-md-8 mb-0">
-                                    <h6>
-                                        <a href="shop-product-right.html">Angie’s Boomchickapop Sweet & Salty Kettle Corn</a>
-                                    </h6>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                    </div>
-                                    <div class="product-price">
-                                        <span>$32.85</span>
-                                        <span class="old-price">$33.8</span>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="row align-items-center hover-up">
-                                <figure class="col-md-4 mb-0">
-                                    <a href="shop-product-right.html"><img src="assets/imgs/shop/thumbnail-12.jpg" alt="" /></a>
-                                </figure>
-                                <div class="col-md-8 mb-0">
-                                    <h6>
-                                        <a href="shop-product-right.html">All Natural Italian-Style Chicken Meatballs</a>
-                                    </h6>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                    </div>
-                                    <div class="product-price">
-                                        <span>$32.85</span>
-                                        <span class="old-price">$33.8</span>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
-        <!--End 4 columns-->
     </main>
 @endsection

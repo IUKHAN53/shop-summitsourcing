@@ -71,6 +71,12 @@ class AlibabaService
         return $this->getPostResponse($apiName, $params);
     }
 
+    public function getTopRankProducts($params)
+    {
+        $apiName = 'product.topList.query';
+        return $this->getPostResponse($apiName, $params);
+    }
+
     public function getCategoriesById($category_id)
     {
         $apiName = 'category.translation.getById';
@@ -86,4 +92,6 @@ class AlibabaService
         $params['language'] = 'en';
         return $this->getResponse($apiName, $params);
     }
+
+
 }
