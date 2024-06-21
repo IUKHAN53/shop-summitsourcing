@@ -75,6 +75,7 @@ class AlibabaService
     {
         $apiName = 'category.translation.getById';
         $params = ['categoryId' => $category_id];
+        $params['language'] = 'en';
         return $this->getResponse($apiName, $params);
     }
 

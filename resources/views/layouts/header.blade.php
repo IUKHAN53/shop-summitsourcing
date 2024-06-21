@@ -653,8 +653,9 @@
         </div>
         <div class="mobile-header-content-area">
             <div class="mobile-search search-style-3 mobile-header-border">
-                <form action="#">
-                    <input type="text" placeholder="Search for items…"/>
+                <form action="{{route('search-products')}}" method="get">
+                    @csrf
+                    <input type="text" name="search" placeholder="Search for items..."/>
                     <button type="submit"><i class="fi-rs-search"></i></button>
                 </form>
             </div>
