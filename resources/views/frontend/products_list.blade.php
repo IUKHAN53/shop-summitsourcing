@@ -55,7 +55,7 @@
                                 <div class="product-cart-wrap mb-30">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
-                                            <a href="shop-product-right.html">
+                                            <a href="{{route('product-detail',$product['offerId'])}}">
                                                 <img class="default-img" src="{{$product['imageUrl']}}" alt="" />
                                                 <img class="hover-img" src="{{$product['imageUrl']}}" alt="" />
                                             </a>
@@ -68,7 +68,7 @@
                                         <div class="product-category">
                                             <a href="shop-grid-right.html">{{getProductCategoryName($product['topCategoryId'])}}</a>
                                         </div>
-                                        <h2><a href="shop-product-right.html">{{$product['subjectTrans']}}</a></h2>
+                                        <h2><a href="{{route('product-detail',$product['offerId'])}}">{{$product['subjectTrans']}}</a></h2>
                                         <div class="product-rate-cover">
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 90%"></div>

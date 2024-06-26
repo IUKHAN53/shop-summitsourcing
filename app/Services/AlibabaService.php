@@ -93,5 +93,11 @@ class AlibabaService
         return $this->getResponse($apiName, $params);
     }
 
+    public function getProductDetails($params)
+    {
+        $apiName = 'product.search.queryProductDetail';
+        return $this->getPostResponse($apiName, $params);
+    }
+
 
 }
