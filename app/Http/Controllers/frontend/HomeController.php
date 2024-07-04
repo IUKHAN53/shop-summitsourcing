@@ -13,6 +13,11 @@ class HomeController extends Controller
         $category = Category::query()->inRandomOrder()->first();
         $api_top_products = $this->getTopProducts($category->alibaba_id)['result']['result'];
         $top_products = [];
+        if(!isset($api_top_products['rankProductModels'])){
+            $category = Category::query()->inRandomOrder()->first();
+            $api_top_products = $this->getTopProducts($category->alibaba_id)['result']['result'];
+            $top_products = [];
+        }
         foreach ($api_top_products['rankProductModels'] as $product) {
             $top_products[] = [
                 'item_id' => $product['itemId'],
