@@ -24,9 +24,27 @@
                         <div class="home-slide-cover mt-30">
                             <div class="hero-slider-1 style-5 dot-style-1 dot-style-1-position-2">
                                 <div class="single-hero-slider single-animation-wrap"
-                                     style="background-image: url({{asset('assets/imgs/slider/slider-7.png')}})">
+                                     style="background-image: url({{asset('assets/imgs/slider/s-0.jpg')}})">
                                     <div class="slider-content">
-                                        <h1 class="display-2 mb-40">
+                                        <h1 class="display-2 mb-40 text-white">
+                                            One Stop Drop shipping <br/>
+                                            Sourcing Assistant
+                                        </h1>
+                                    </div>
+                                </div>
+                                <div class="single-hero-slider single-animation-wrap"
+                                     style="background-image: url({{asset('assets/imgs/slider/s-1.jpg')}})">
+                                    <div class="slider-content">
+                                        <h1 class="display-2 mb-40 text-white">
+                                            Don’t miss amazing<br/>
+                                             deals
+                                        </h1>
+                                    </div>
+                                </div>
+                                <div class="single-hero-slider single-animation-wrap"
+                                     style="background-image: url({{asset('assets/imgs/slider/s-3.jpg')}})">
+                                    <div class="slider-content">
+                                        <h1 class="display-2 mb-40 text-white">
                                             Don’t miss amazing<br/>
                                              deals
                                         </h1>
