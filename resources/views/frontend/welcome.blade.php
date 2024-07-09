@@ -12,7 +12,7 @@
                                         <li>
                                             <a href="#">
                                                 <img src="assets/imgs/theme/icons/category-{{$loop->iteration}}.svg"
-                                                    alt=""/>{{$category->name}}
+                                                     alt=""/>{{$category->name}}
                                             </a>
                                         </li>
                                     @endforeach
@@ -37,7 +37,7 @@
                                     <div class="slider-content">
                                         <h1 class="display-2 mb-40 text-white">
                                             Don’t miss amazing<br/>
-                                             deals
+                                            deals
                                         </h1>
                                     </div>
                                 </div>
@@ -46,7 +46,7 @@
                                     <div class="slider-content">
                                         <h1 class="display-2 mb-40 text-white">
                                             Don’t miss amazing<br/>
-                                             deals
+                                            deals
                                         </h1>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@
                     <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
                         <div class="row product-grid-4">
                             @foreach($top_products as $product)
-                                <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                                <div class="col-lg-1-5 col-md-4 col-12 col-sm-6 product-cart-wrap">
                                     <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
                                          data-wow-delay=".1s">
                                         <div class="product-img-action-wrap">
@@ -104,8 +104,15 @@
                                                 </a>
                                             </div>
                                             <div class="product-action-1">
-                                                <a aria-label="Add To Wishlist" class="action-btn"
-                                                   href="#"><i class="fi-rs-heart"></i></a>
+                                                <a onclick="addToWishlist('{{$product['item_id']}}')" id="wishlist-{{$product['item_id']}}"
+                                                   aria-label="Add To Wishlist" class="action-btn"
+                                                   href="javascript:void(0)">
+                                                    @if(isWishlisted($product['item_id']))
+                                                        <img src="{{asset('assets/heart-solid.svg')}}" alt="">
+                                                    @else
+                                                        <i class="fi-rs-heart"></i>
+                                                    @endif
+                                                </a>
                                             </div>
                                             <div class="product-badges product-badges-position product-badges-mrg">
                                                 <span class="hot">Hot</span>
@@ -115,21 +122,25 @@
                                             <div class="product-category">
                                                 <a href="#">{{$product['category']}}</a>
                                             </div>
-                                            <h2><a href="{{route('product-detail',$product['item_id'])}}">{{$product['title']}}</a></h2>
+                                            <h2>
+                                                <a href="{{route('product-detail',$product['item_id'])}}">{{$product['title']}}</a>
+                                            </h2>
                                             <div class="product-rate-cover">
                                                 <div class="product-rate d-inline-block">
-                                                    <div class="product-rating" style="width: {{$product['width']}}%"></div>
+                                                    <div class="product-rating"
+                                                         style="width: {{$product['width']}}%"></div>
                                                 </div>
-                                                <span class="font-small ml-5 text-muted"> ({{$product['rating']}})</span>
+                                                <span class="font-small ml-5 text-muted"> ({{$product['rating']}}
+                                                    )</span>
                                             </div>
                                             <div>
-                                                <span class="font-small text-muted">With <a href="#">{{$product['service']}}</a></span>
+                                                <span class="font-small text-muted">With <a
+                                                        href="#">{{$product['service']}}</a></span>
                                             </div>
                                             <div class="product-card-bottom">
-
                                                 <div class="add-cart">
-                                                    <a class="add" href="#"><i
-                                                            class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                    <a class="add" href="#"><i class="fi-rs-shopping-cart mr-5"></i>Add
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -165,10 +176,12 @@
                                                         </a>
                                                     </div>
                                                     <div class="product-action-1">
-                                                        <a aria-label="Add To Wishlist" class="action-btn small hover-up"
+                                                        <a aria-label="Add To Wishlist"
+                                                           class="action-btn small hover-up"
                                                            href="#"><i class="fi-rs-heart"></i></a>
                                                     </div>
-                                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                                    <div
+                                                        class="product-badges product-badges-position product-badges-mrg">
                                                         <span class="hot">Deal</span>
                                                     </div>
                                                 </div>
@@ -176,12 +189,16 @@
                                                     <div class="product-category">
                                                         <a href="#">{{$deal['category']}}</a>
                                                     </div>
-                                                    <h2><a href="{{route('product-detail',$product['item_id'])}}">{{$deal['title']}}</a></h2>
+                                                    <h2>
+                                                        <a href="{{route('product-detail',$product['item_id'])}}">{{$deal['title']}}</a>
+                                                    </h2>
                                                     <div class="product-rate d-inline-block">
-                                                        <div class="product-rating" style="width: {{$deal['width']}}%"></div>
+                                                        <div class="product-rating"
+                                                             style="width: {{$deal['width']}}%"></div>
                                                     </div>
                                                     <div class="sold mt-15 mb-15">
-                                                        <span class="font-xs text-heading"> Sold: {{$deal['sold']}}</span>
+                                                        <span class="font-xs text-heading">
+                                                            Sold: {{$deal['sold']}}</span>
                                                     </div>
                                                     <a href="#" class="btn w-100 hover-up"><i
                                                             class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>

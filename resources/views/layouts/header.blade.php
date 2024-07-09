@@ -6,13 +6,15 @@
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="#"><img src="{{asset('assets/imgs/logo.svg')}}" alt="logo" width="120" height="100"/></a>
+                    <a href="{{route('welcome')}}"><img src="{{asset('assets/imgs/logo.svg')}}" alt="logo" width="120"
+                                                        height="100"/></a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
                         <form action="{{route('search-products')}}" method="get">
                             @csrf
-                            <input type="text" name="search" placeholder="Search for items..." style="max-width: 700px !important;"/>
+                            <input type="text" name="search" placeholder="Search for items..."
+                                   style="max-width: 700px !important;"/>
                         </form>
                     </div>
                     <div class="header-action-right">
@@ -39,21 +41,24 @@
                             </div>
                             <div class="header-action-icon-2">
                                 <a href="#">
-                                    <img class="svgInject" alt="Nest" src="{{asset('assets/imgs/theme/icons/icon-heart.svg')}}"/>
+                                    <img class="svgInject" alt="Nest"
+                                         src="{{asset('assets/imgs/theme/icons/icon-heart.svg')}}"/>
+                                    <span class="pro-count blue" id="wishlistCount">{{getWishlistCount()}}</span>
                                 </a>
-                                <a href="#"><span class="lable">Wishlist</span></a>
+                                <a href="{{route('wishlist.index')}}"><span class="lable">Wishlist</span></a>
                             </div>
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="#">
                                     <img alt="Nest" src="{{asset('assets/imgs/theme/icons/icon-cart.svg')}}"/>
-{{--                                    <span class="pro-count blue">2</span>--}}
+                                    {{--                                    <span class="pro-count blue">2</span>--}}
                                 </a>
                                 <a href="#"><span class="lable">Cart</span></a>
                             </div>
                             <div class="header-action-icon-2">
                                 @auth
                                     <a href="page-account.html">
-                                        <img class="svgInject" alt="Nest" src="{{asset('assets/imgs/theme/icons/icon-user.svg')}}"/>
+                                        <img class="svgInject" alt="Nest"
+                                             src="{{asset('assets/imgs/theme/icons/icon-user.svg')}}"/>
                                     </a>
                                     <a href="page-account.html"><span class="lable ml-0">Account</span></a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
@@ -91,7 +96,8 @@
                                     </div>
                                 @else
                                     <a href="{{route('login')}}">
-                                        <img class="svgInject" alt="Nest" src="{{asset('assets/imgs/theme/icons/icon-user.svg')}}"/>
+                                        <img class="svgInject" alt="Nest"
+                                             src="{{asset('assets/imgs/theme/icons/icon-user.svg')}}"/>
                                     </a>
                                     <a href="{{route('login')}}"><span class="lable ml-0">Login</span></a>
                                 @endauth
@@ -113,19 +119,19 @@
                         <nav>
                             <ul>
                                 <li class="hot-deals">
-                                    <a href="#">Home</a>
+                                    <a href="{{route('welcome')}}">Home</a>
                                 </li>
                                 <li class="hot-deals">
                                     <a href="#">Categories</a>
                                 </li>
                                 <li class="hot-deals">
-                                    <a href="#">Dropshipping</a>
+                                    <a href="{{route('static-page','dropshipping')}}">Dropshipping</a>
                                 </li>
                                 <li class="hot-deals">
-                                    <a href="#">Our Services</a>
+                                    <a href="{{route('static-page','services')}}">Our Services</a>
                                 </li>
                                 <li class="hot-deals">
-                                    <a href="#">About Us</a>
+                                    <a href="{{route('static-page','about_us')}}">About Us</a>
                                 </li>
                             </ul>
                         </nav>

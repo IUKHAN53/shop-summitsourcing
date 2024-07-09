@@ -77,5 +77,9 @@ class HomeController extends Controller
         return $alibaba->getTopRankProducts($params);
     }
 
+    public function staticPages($slug)
+    {
+        return view('frontend.static_pages.' . $slug);
+    }
 
 }
