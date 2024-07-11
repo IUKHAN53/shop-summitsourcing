@@ -15,16 +15,17 @@
                                         <span><i class="fi-rs-apps"></i>Show:</span>
                                     </div>
                                     <div class="sort-by-dropdown-wrap">
-                                        <span> 50 <i class="fi-rs-angle-small-down"></i></span>
+                                        <span>{{ $pageSize }} <i class="fi-rs-angle-small-down"></i></span>
                                     </div>
                                 </div>
                                 <div class="sort-by-dropdown">
                                     <ul>
-                                        <li><a class="active" href="#">50</a></li>
-                                        <li><a href="#">100</a></li>
-                                        <li><a href="#">150</a></li>
-                                        <li><a href="#">200</a></li>
-                                        <li><a href="#">All</a></li>
+                                        <li><a href="{{ request()->fullUrlWithQuery(['pageSize' => 15]) }}"
+                                               class="{{ $pageSize == 15 ? 'active' : '' }}">15</a></li>
+                                        <li><a href="{{ request()->fullUrlWithQuery(['pageSize' => 25]) }}"
+                                               class="{{ $pageSize == 25 ? 'active' : '' }}">25</a></li>
+                                        <li><a href="{{ request()->fullUrlWithQuery(['pageSize' => 50]) }}"
+                                               class="{{ $pageSize == 50 ? 'active' : '' }}">50</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -34,16 +35,26 @@
                                         <span><i class="fi-rs-apps-sort"></i>Sort by:</span>
                                     </div>
                                     <div class="sort-by-dropdown-wrap">
-                                        <span> Featured <i class="fi-rs-angle-small-down"></i></span>
+                                        <span>
+                                            {{ $sort == 'asc' ? 'Price: Low to High' : ($sort == 'desc' ? 'Price: High to Low' : 'Featured' ) }}
+                                            <i class="fi-rs-angle-small-down"></i>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="sort-by-dropdown">
                                     <ul>
-                                        <li><a class="active" href="#">Featured</a></li>
-                                        <li><a href="#">Price: Low to High</a></li>
-                                        <li><a href="#">Price: High to Low</a></li>
-                                        <li><a href="#">Release Date</a></li>
-                                        <li><a href="#">Avg. Rating</a></li>
+                                        <li>
+                                            <a href="{{ request()->fullUrlWithQuery(['sort' => 'default']) }}"
+                                               class="{{ $sort == 'default' ? 'active' : '' }}">Featured</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ request()->fullUrlWithQuery(['sort' => 'asc']) }}"
+                                               class="{{ $sort == 'asc' ? 'active' : '' }}">Price: Low to High</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ request()->fullUrlWithQuery(['sort' => 'desc']) }}"
+                                               class="{{ $sort == 'desc' ? 'active' : '' }}">Price: High to Low</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -56,34 +67,47 @@
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
                                             <a href="{{route('product-detail',$product['offerId'])}}">
-                                                <img class="default-img" src="{{$product['imageUrl']}}" alt="" />
-                                                <img class="hover-img" src="{{$product['imageUrl']}}" alt="" />
+                                                <img class="default-img" src="{{$product['imageUrl']}}" alt=""/>
+                                                <img class="hover-img" src="{{$product['imageUrl']}}" alt=""/>
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                            <a onclick="addToWishlist('{{$product['offerId']}}')" id="wishlist-{{$product['offerId']}}"
+                                               aria-label="Add To Wishlist" class="action-btn"
+                                               href="javascript:void(0)">
+                                                @if(isWishlisted($product['offerId']))
+                                                    <img src="{{asset('assets/heart-solid.svg')}}" alt="">
+                                                @else
+                                                    <i class="fi-rs-heart"></i>
+                                                @endif
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="product-content-wrap">
                                         <div class="product-category">
-                                            <a href="shop-grid-right.html">{{getProductCategoryName($product['topCategoryId'])}}</a>
+                                            <a href="shop-grid-right.html">{{isset($product['topCategoryId']) ? getProductCategoryName($product['topCategoryId']):''}}</a>
                                         </div>
-                                        <h2><a href="{{route('product-detail',$product['offerId'])}}">{{$product['subjectTrans']}}</a></h2>
+                                        <h2>
+                                            <a href="{{route('product-detail',$product['offerId'])}}">{{$product['subjectTrans']}}</a>
+                                        </h2>
                                         <div class="product-rate-cover">
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 90%"></div>
                                             </div>
-                                            <span class="font-small ml-5 text-muted"> ({{$product['tradeScore']}})</span>
+                                            <span class="font-small ml-5 text-muted"> ({{$product['tradeScore']}}
+                                                )</span>
                                         </div>
                                         <div>
-                                            <span class="font-small text-muted">By <a href="vendor-details-1.html">{{implode(',', $product['sellerIdentities'])}}</a></span>
+                                            <span class="font-small text-muted">By <a
+                                                    href="vendor-details-1.html">{{implode(',', $product['sellerIdentities'])}}</a></span>
                                         </div>
                                         <div class="product-card-bottom">
                                             <div class="product-price">
-                                                <span>${{$product['priceInfo']['price']}}</span>
+                                                <span>{{convertCurrency($product['priceInfo']['price'])}}</span>
                                             </div>
                                             <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                <a class="add" href="shop-cart.html"><i
+                                                        class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
                                         </div>
                                     </div>
@@ -95,17 +119,35 @@
                     <div class="pagination-area mt-20 mb-20">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-start">
-                                <li class="page-item">
-                                    <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                                <li class="page-item"><a class="page-link" href="#">6</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
-                                </li>
+                                @if ($page > 1)
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                           href="{{ request()->fullUrlWithQuery(['page' => $page - 1]) }}"><i
+                                                class="fi-rs-arrow-small-left"></i></a>
+                                    </li>
+                                @endif
+                                @for ($i = 1; $i <= min($pages, 10); $i++)
+                                    <li class="page-item {{ $i == $page ? 'active' : '' }}">
+                                        <a class="page-link"
+                                           href="{{ request()->fullUrlWithQuery(['page' => $i]) }}">{{ $i }}</a>
+                                    </li>
+                                @endfor
+                                @if ($pages > 10)
+                                    <li class="page-item {{ $page > 10 ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ request()->fullUrlWithQuery(['page' => 11]) }}">...</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                           href="{{ request()->fullUrlWithQuery(['page' => $pages]) }}">{{ $pages }}</a>
+                                    </li>
+                                @endif
+                                @if ($page < $pages)
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                           href="{{ request()->fullUrlWithQuery(['page' => $page + 1]) }}"><i
+                                                class="fi-rs-arrow-small-right"></i></a>
+                                    </li>
+                                @endif
                             </ul>
                         </nav>
                     </div>

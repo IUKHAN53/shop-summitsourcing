@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\ProductController;
 use App\Http\Controllers\frontend\WishlistController;
@@ -7,11 +8,17 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 //Route::get('test', [HomeController::class, 'index'])->name('test');
-
+Route::get('buser', function () {
+    $user = \App\Models\User::first();
+    \Illuminate\Support\Facades\Auth::login($user);
+    return redirect()->route('welcome');
+})->name('test');
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 Route::get('products', [ProductController::class, 'searchProducts'])->name('search-products');
 Route::get('product-detail/{id}', [ProductController::class, 'getDetails'])->name('product-detail');
+Route::post('/set-currency', [CurrencyController::class, 'setCurrency'])->name('setCurrency');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

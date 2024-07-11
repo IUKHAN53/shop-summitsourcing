@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="clearfix product-price-cover">
                                         <div class="product-price primary-color float-left">
-                                            <span class="current-price text-brand">${{$product['price']}}</span>
+                                            <span class="current-price text-brand">{{convertCurrency($product['price'])}}</span>
                                             <span>
                                                 <span class="font-md color3 ml-15">Minimum Order Quantity</span>
                                                 <span class="font-md ml-15">{{$product['moq']}}</span>

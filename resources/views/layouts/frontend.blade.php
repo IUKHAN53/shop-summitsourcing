@@ -33,6 +33,11 @@
 
 <script>
     function addToWishlist(productId) {
+        let user = '{{auth()->user()}}';
+        if (!user) {
+            window.location.href = '/login';
+            return;
+        }
         let product_div = $('#wishlist-' + productId);
         let wishlist_count_div = $('#wishlistCount');
         $.ajax({

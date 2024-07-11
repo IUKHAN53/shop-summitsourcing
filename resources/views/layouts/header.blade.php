@@ -20,22 +20,17 @@
                     <div class="header-action-right">
                         <div class="header-action-2">
                             <div class="search-location">
-                                <form action="#">
-                                    <select class="select-active">
-                                        <option>Your Location</option>
-                                        <option>Alabama</option>
-                                        <option>Alaska</option>
-                                        <option>Arizona</option>
-                                        <option>Delaware</option>
-                                        <option>Florida</option>
-                                        <option>Georgia</option>
-                                        <option>Hawaii</option>
-                                        <option>Indiana</option>
-                                        <option>Maryland</option>
-                                        <option>Nevada</option>
-                                        <option>New Jersey</option>
-                                        <option>New Mexico</option>
-                                        <option>New York</option>
+                                <form action="{{ route('setCurrency') }}" method="POST" >
+                                    @csrf
+                                    <select name="currency" class="select-active w-full" onchange="this.form.submit()">
+                                        <option value="CNY" {{session('currency') == 'CNY' ? 'selected' : ''}}>CNY - Chinese Yuan</option>
+                                        <option value="USD" {{session('currency') == 'USD' ? 'selected' : ''}}>USD - United States Dollar</option>
+                                        <option value="EUR" {{session('currency') == 'EUR' ? 'selected' : ''}}>EUR - Euro</option>
+                                        <option value="GBP" {{session('currency') == 'GBP' ? 'selected' : ''}}>GBP - British Pound</option>
+                                        <option value="PKR" {{session('currency') == 'PKR' ? 'selected' : ''}}>PKR - Pakistani Rupee</option>
+                                        <option value="NZD" {{session('currency') == 'NZD' ? 'selected' : ''}}>NZD - New Zealand Dollar</option>
+                                        <option value="AUD" {{session('currency') == 'AUD' ? 'selected' : ''}}>AUD - Australian Dollar</option>
+                                        <option value="INR" {{session('currency') == 'INR' ? 'selected' : ''}}>INR - Indian Rupee</option>
                                     </select>
                                 </form>
                             </div>
