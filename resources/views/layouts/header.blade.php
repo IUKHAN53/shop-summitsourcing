@@ -109,7 +109,7 @@
             </div>
         </div>
     </div>
-    @auth
+    @if(Route::currentRouteName() != 'register' && Route::currentRouteName() != 'login')
         <div class="header-bottom header-bottom-bg-color sticky-bar">
             <div class="container">
                 <div class="header-wrap header-space-between position-relative">
@@ -214,7 +214,7 @@
                 </form>
             </div>
         </div>
-    @endauth
+    @endif
 </header>
 <div class="mobile-header-active mobile-header-wrapper-style">
     <div class="mobile-header-wrapper-inner">
