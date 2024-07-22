@@ -106,7 +106,7 @@
                                                 <a onclick="addToWishlist('{{$product['offerId']}}')" id="wishlist-{{$product['offerId']}}"
                                                    aria-label="Add To Wishlist" class="action-btn"
                                                    href="javascript:void(0)">
-                                                    @if(isWishlisted($product['offer_id']))
+                                                    @if(isWishlisted($product['offerId']))
                                                         <img src="{{asset('assets/heart-solid.svg')}}" alt="">
                                                     @else
                                                         <i class="fi-rs-heart"></i>
@@ -131,9 +131,12 @@
                                                 <span class="font-small ml-5 text-muted"> ({{$product['rating']}}
                                                     )</span>
                                             </div>
-                                            <div>
-                                                <span class="font-small text-muted">With <a
-                                                        href="#">{{$product['service']}}</a></span>
+                                            <div class="flex flex-row">
+                                                <div class="current-price text-brand">{{convertCurrency($product['price'])}}</div>
+                                                <div>
+                                                    <span class="font-md color3">Minimum Order Quantity</span>
+                                                    <span class="font-md ml-15">{{$product['moq']}}</span>
+                                                </div>
                                             </div>
                                             <div class="product-card-bottom">
                                                 <div class="add-cart">

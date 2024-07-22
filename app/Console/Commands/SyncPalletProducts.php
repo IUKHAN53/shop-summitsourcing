@@ -27,9 +27,8 @@ class SyncPalletProducts extends Command
      */
     public function handle()
     {
-        $this->info('Starting the synchronization of pallet products...');
-
         $alibaba = new AlibabaService();
+        $this->info('Starting the synchronization of pallet products...');
 
         // Get total count of products
         $this->info('Fetching total number of products...');
@@ -97,8 +96,10 @@ class SyncPalletProducts extends Command
     private function fetchProductDetails(array $productIds, AlibabaService $alibaba): array
     {
         $productList = [];
+        $count = count($productIds);
+        $iteration = 1;
         foreach ($productIds as $productId) {
-            $this->info("Fetching details for product ID: $productId...");
+            $this->info("Fetching details for product ID: $productId... (" . $iteration . "/" . $count . ")");
             $data = $this->getProductDetails($productId, $alibaba);
             $result = $data['result']['result'];
             $productList[] = [
@@ -107,12 +108,13 @@ class SyncPalletProducts extends Command
                 'title' => $result['subjectTrans'],
                 'images' => $result['productImage']['images'][0],
                 'quantity' => $result['productSaleInfo']['amountOnSale'],
-                'sold' => $result['soldOut'],
+                'sold' => $result['soldOut'] ?? 0,
                 'price' => $result['productSaleInfo']['priceRangeList'][0]['price'],
                 'unit' => $result['productSaleInfo']['unitInfo']['transUnit'],
                 'moq' => $result['minOrderQuantity'],
                 'rating' => $result['tradeScore'],
             ];
+            $iteration++;
         }
         return $productList;
     }

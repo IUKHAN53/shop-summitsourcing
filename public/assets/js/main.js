@@ -477,7 +477,7 @@
     }
 
     /*-----------------------
-        Shop filter active 
+        Shop filter active
     ------------------------- */
     $(".shop-filter-toogle").on("click", function (e) {
         e.preventDefault();
@@ -546,7 +546,9 @@
     /*---------------------
         Select active
     --------------------- */
-    $(".select-active").select2();
+    $(".select-active").select2({
+        width: "100%"
+    });
 
     /*--- Checkout toggle function ----*/
     $(".checkout-click1").on("click", function (e) {

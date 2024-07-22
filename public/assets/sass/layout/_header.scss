@@ -101,7 +101,7 @@
 					background: #fff;
 					border-radius: 0 0 4px 4px;
 					-webkit-transform: translateY(20px);
-					transform: translateY(20px);					
+					transform: translateY(20px);
 					visibility: hidden;
 					opacity: 0;
 					padding: 10px 15px;
@@ -112,7 +112,7 @@
 
 				li {
 					display: block;
-					
+
 					a {
 						display: block;
 						color: #696969;
@@ -416,7 +416,7 @@
 				a i {
 					margin-right: 15px;
 				}
-				
+
 				.categori-dropdown-active-small {
 					background-color: transparent;
 					box-shadow: none;
@@ -824,7 +824,7 @@
 }
 
 .search-style-2 {
-	width: 100%;	
+	width: 100%;
 	form {
 		width: 100%;
 		display: -webkit-box;
@@ -860,7 +860,7 @@
 
 		}
 
-		input {		
+		input {
 			width: 100%;
 			max-width: 683px;
 			font-size: 14px;
@@ -881,9 +881,9 @@
 			&:focus {
 				border-color: #414648;
 				border-width: 0 0 3px 0;
-				border-style: solid;				
+				border-style: solid;
 			}
-			
+
 
 		}
 
@@ -1093,7 +1093,7 @@
 			-ms-transform-origin: center;
 			transform-origin: center;
 			display: block;
-			overflow: hidden;		
+			overflow: hidden;
 
 			&.icon-top {
 				-webkit-transform: translate(-50%, -50%) rotate(45deg);
@@ -1179,7 +1179,7 @@
 		position: absolute;
 		left: 0;
 		width: 100%;
-		height: 2px;		
+		height: 2px;
 		&.burger-icon-top {
 			top: 2px;
 		}
@@ -1382,10 +1382,10 @@
 										font-size: $font-sm;
 										display: block;
 										font-weight: 500;
-									}	
+									}
 									ul {
 										margin-top: 0;
-									}								
+									}
 									&.menu-item-has-children.active {
 										padding-bottom: 0;
 									}
@@ -1405,7 +1405,7 @@
 					}
 
 				}
-				
+
 			}
 			.categories-dropdown-wrap ul li a {
 				padding: 5px 15px;
@@ -1485,7 +1485,7 @@
 				}
 
 			}
-		
+
 			.mobile-header-border {
 				border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 			}
@@ -1500,7 +1500,7 @@
 
 }
 .mobile-social-icon {
-	a {		
+	a {
 		text-align: center;
 		font-size: 14px;
 		margin-right: 5px;
@@ -1546,7 +1546,7 @@
 	p {
 		color: $color-brand;
 		font-size: 26px;
-		font-weight: 700;		
+		font-weight: 700;
 		font-family: $font-heading;
 		display: block;
 		line-height: 1;
@@ -1674,8 +1674,8 @@
 		border-radius: 4px;
 		max-width: 700px;
 		background-color: #fff;
-		input {	
-			max-width: 600px;	
+		input {
+			max-width: 600px;
 			border-width: 0px;
 			border-radius: 0 5px 5px 0;
 			margin-left: 20px;
@@ -1728,11 +1728,11 @@
 			color: $color-brand !important;
 		}
 	}
-	
+
 	.main-categori-wrap > a span {
 		color: #fff !important;
 	}
-	
+
 }
 .header-style-1.header-style-5 {
 	.header-bottom-bg-color {

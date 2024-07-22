@@ -11,7 +11,7 @@ class Product extends Model
 
     protected $fillable = [
         'offerId',
-        'category_name',
+        'category_id',
         'title',
         'images',
         'quantity',
@@ -21,4 +21,18 @@ class Product extends Model
         'moq',
         'rating',
     ];
+
+    public function getCategoryAttribute()
+    {
+        return \App\Models\Category::query()->where('alibaba_id', $this->category_id)->first()->name ?? '';
+    }
+
+    public function getWidthAttribute()
+    {
+        $totalScore = 5;
+        return ($this->rating / $totalScore) * 100;
+    }
+
+
+
 }

@@ -17,17 +17,25 @@
                     <div class="header-action-right">
                         <div class="header-action-2">
                             <div class="search-location">
-                                <form action="{{ route('setCurrency') }}" method="POST" >
+                                <form action="{{ route('setCurrency') }}" method="POST">
                                     @csrf
-                                    <select name="currency" class="select-active w-full" onchange="this.form.submit()">
-                                        <option value="USD" {{session('currency') == 'USD' ? 'selected' : ''}}>USD - United States Dollar</option>
-                                        <option value="CNY" {{session('currency') == 'CNY' ? 'selected' : ''}}>CNY - Chinese Yuan</option>
-                                        <option value="EUR" {{session('currency') == 'EUR' ? 'selected' : ''}}>EUR - Euro</option>
-                                        <option value="GBP" {{session('currency') == 'GBP' ? 'selected' : ''}}>GBP - British Pound</option>
-                                        <option value="PKR" {{session('currency') == 'PKR' ? 'selected' : ''}}>PKR - Pakistani Rupee</option>
-                                        <option value="NZD" {{session('currency') == 'NZD' ? 'selected' : ''}}>NZD - New Zealand Dollar</option>
-                                        <option value="AUD" {{session('currency') == 'AUD' ? 'selected' : ''}}>AUD - Australian Dollar</option>
-                                        <option value="INR" {{session('currency') == 'INR' ? 'selected' : ''}}>INR - Indian Rupee</option>
+                                    <select name="currency" class="select-active" onchange="this.form.submit()">
+                                        <option value="USD" {{session('currency') == 'USD' ? 'selected' : ''}}>USD
+                                        </option>
+                                        <option value="CNY" {{session('currency') == 'CNY' ? 'selected' : ''}}>CNY
+                                        </option>
+                                        <option value="EUR" {{session('currency') == 'EUR' ? 'selected' : ''}}>EUR
+                                        </option>
+                                        <option value="GBP" {{session('currency') == 'GBP' ? 'selected' : ''}}>GBP
+                                        </option>
+                                        <option value="PKR" {{session('currency') == 'PKR' ? 'selected' : ''}}>PKR
+                                        </option>
+                                        <option value="NZD" {{session('currency') == 'NZD' ? 'selected' : ''}}>NZD
+                                        </option>
+                                        <option value="AUD" {{session('currency') == 'AUD' ? 'selected' : ''}}>AUD
+                                        </option>
+                                        <option value="INR" {{session('currency') == 'INR' ? 'selected' : ''}}>INR
+                                        </option>
                                     </select>
                                 </form>
                             </div>
@@ -68,7 +76,8 @@
                                                     Voucher</a>
                                             </li>
                                             <li>
-                                                <a href="{{route('wishlist.index')}}"><i class="fi fi-rs-heart mr-10"></i>My
+                                                <a href="{{route('wishlist.index')}}"><i
+                                                        class="fi fi-rs-heart mr-10"></i>My
                                                     Wishlist</a>
                                             </li>
                                             <li>
@@ -100,93 +109,97 @@
             </div>
         </div>
     </div>
-    <div class="header-bottom header-bottom-bg-color sticky-bar">
-        <div class="container">
-            <div class="header-wrap header-space-between position-relative">
-                <div class="logo logo-width-1 d-block d-lg-none">
-                    <a href="#"><img src="{{asset('assets/imgs/logo.svg')}}" alt="logo"/></a>
-                </div>
-                <div class="header-nav d-none d-lg-flex">
-                    <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
-                        <nav>
-                            <ul>
-                                <li class="hot-deals">
-                                    <a href="{{route('welcome')}}">Home</a>
-                                </li>
-                                <li class="hot-deals">
-                                    <a href="#">Categories</a>
-                                </li>
-                                <li class="hot-deals">
-                                    <a href="{{route('static-page','dropshipping')}}">Dropshipping</a>
-                                </li>
-                                <li class="hot-deals">
-                                    <a href="{{route('static-page','services')}}">Our Services</a>
-                                </li>
-                                <li class="hot-deals">
-                                    <a href="{{route('static-page','about_us')}}">About Us</a>
-                                </li>
-                            </ul>
-                        </nav>
+    @auth
+        <div class="header-bottom header-bottom-bg-color sticky-bar">
+            <div class="container">
+                <div class="header-wrap header-space-between position-relative">
+                    <div class="logo logo-width-1 d-block d-lg-none">
+                        <a href="#"><img src="{{asset('assets/imgs/logo.svg')}}" alt="logo"/></a>
                     </div>
-                </div>
-                <div class="header-action-icon-2 d-block d-lg-none">
-                    <div class="burger-icon burger-icon-white">
-                        <span class="burger-icon-top"></span>
-                        <span class="burger-icon-mid"></span>
-                        <span class="burger-icon-bottom"></span>
-                    </div>
-                </div>
-                <div class="header-action-right d-block d-lg-none">
-                    <div class="header-action-2">
-                        <div class="header-action-icon-2">
-                            <a href="{{route('wishlist.index')}}">
-                                <img alt="Nest" src="{{asset('assets/imgs/theme/icons/icon-heart.svg')}}"/>
-                                <span class="pro-count white wishlistCount">0</span>
-                            </a>
-                        </div>
-                        <div class="header-action-icon-2">
-                            <a class="mini-cart-icon" href="#">
-                                <img alt="Nest" src="{{asset('assets/imgs/theme/icons/icon-cart.svg')}}"/>
-                                <span class="pro-count white">2</span>
-                            </a>
-                            <div class="cart-dropdown-wrap cart-dropdown-hm2">
+                    <div class="header-nav d-none d-lg-flex">
+                        <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
+                            <nav>
                                 <ul>
-                                    <li>
-                                        <div class="shopping-cart-img">
-                                            <a href="#">
-                                                <img alt="Nest" src="{{asset('assets/imgs/shop/thumbnail-3.jpg')}}"/>
-                                            </a>
-                                        </div>
-                                        <div class="shopping-cart-title">
-                                            <h4><a href="#">Plain Striola Shirts</a></h4>
-                                            <h3><span>1 × </span>$800.00</h3>
-                                        </div>
-                                        <div class="shopping-cart-delete">
-                                            <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                        </div>
+                                    <li class="hot-deals">
+                                        <a href="{{route('welcome')}}">Home</a>
                                     </li>
-                                    <li>
-                                        <div class="shopping-cart-img">
-                                            <a href="shop-product-right.html">
-                                                <img alt="Nest" src="{{asset('assets/imgs/shop/thumbnail-4.jpg')}}"/>
-                                            </a>
-                                        </div>
-                                        <div class="shopping-cart-title">
-                                            <h4><a href="shop-product-right.html">Macbook Pro 2022</a></h4>
-                                            <h3><span>1 × </span>$3500.00</h3>
-                                        </div>
-                                        <div class="shopping-cart-delete">
-                                            <a href="#"><i class="fi-rs-cross-small"></i></a>
-                                        </div>
+                                    <li class="hot-deals">
+                                        <a href="#">Categories</a>
+                                    </li>
+                                    <li class="hot-deals">
+                                        <a href="{{route('static-page','dropshipping')}}">Dropshipping</a>
+                                    </li>
+                                    <li class="hot-deals">
+                                        <a href="{{route('static-page','services')}}">Our Services</a>
+                                    </li>
+                                    <li class="hot-deals">
+                                        <a href="{{route('static-page','about_us')}}">About Us</a>
                                     </li>
                                 </ul>
-                                <div class="shopping-cart-footer">
-                                    <div class="shopping-cart-total">
-                                        <h4>Total <span>$383.00</span></h4>
-                                    </div>
-                                    <div class="shopping-cart-button">
-                                        <a href="shop-cart.html">View cart</a>
-                                        <a href="shop-checkout.html">Checkout</a>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="header-action-icon-2 d-block d-lg-none">
+                        <div class="burger-icon burger-icon-white">
+                            <span class="burger-icon-top"></span>
+                            <span class="burger-icon-mid"></span>
+                            <span class="burger-icon-bottom"></span>
+                        </div>
+                    </div>
+                    <div class="header-action-right d-block d-lg-none">
+                        <div class="header-action-2">
+                            <div class="header-action-icon-2">
+                                <a href="{{route('wishlist.index')}}">
+                                    <img alt="Nest" src="{{asset('assets/imgs/theme/icons/icon-heart.svg')}}"/>
+                                    <span class="pro-count white wishlistCount">0</span>
+                                </a>
+                            </div>
+                            <div class="header-action-icon-2">
+                                <a class="mini-cart-icon" href="#">
+                                    <img alt="Nest" src="{{asset('assets/imgs/theme/icons/icon-cart.svg')}}"/>
+                                    <span class="pro-count white">2</span>
+                                </a>
+                                <div class="cart-dropdown-wrap cart-dropdown-hm2">
+                                    <ul>
+                                        <li>
+                                            <div class="shopping-cart-img">
+                                                <a href="#">
+                                                    <img alt="Nest"
+                                                         src="{{asset('assets/imgs/shop/thumbnail-3.jpg')}}"/>
+                                                </a>
+                                            </div>
+                                            <div class="shopping-cart-title">
+                                                <h4><a href="#">Plain Striola Shirts</a></h4>
+                                                <h3><span>1 × </span>$800.00</h3>
+                                            </div>
+                                            <div class="shopping-cart-delete">
+                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="shopping-cart-img">
+                                                <a href="shop-product-right.html">
+                                                    <img alt="Nest"
+                                                         src="{{asset('assets/imgs/shop/thumbnail-4.jpg')}}"/>
+                                                </a>
+                                            </div>
+                                            <div class="shopping-cart-title">
+                                                <h4><a href="shop-product-right.html">Macbook Pro 2022</a></h4>
+                                                <h3><span>1 × </span>$3500.00</h3>
+                                            </div>
+                                            <div class="shopping-cart-delete">
+                                                <a href="#"><i class="fi-rs-cross-small"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="shopping-cart-footer">
+                                        <div class="shopping-cart-total">
+                                            <h4>Total <span>$383.00</span></h4>
+                                        </div>
+                                        <div class="shopping-cart-button">
+                                            <a href="shop-cart.html">View cart</a>
+                                            <a href="shop-checkout.html">Checkout</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -194,20 +207,21 @@
                     </div>
                 </div>
             </div>
+            <div class="mobile-search search-style-3 custom-search mobile-header-border">
+                <form action="{{route('search-products')}}" method="get">
+                    <input type="text" name="search" placeholder="Search for items..."/>
+                    <button type="submit"><i class="fi-rs-search"></i></button>
+                </form>
+            </div>
         </div>
-        <div class="mobile-search search-style-3 custom-search mobile-header-border">
-            <form action="{{route('search-products')}}" method="get">
-                <input type="text" name="search" placeholder="Search for items..."/>
-                <button type="submit"><i class="fi-rs-search"></i></button>
-            </form>
-        </div>
-    </div>
+    @endauth
 </header>
 <div class="mobile-header-active mobile-header-wrapper-style">
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-top">
             <div class="mobile-header-logo">
-                <a href="{{route('welcome')}}"><img src="{{asset('assets/imgs/logo.svg')}}" alt="logo" width="80" height="80"/></a>
+                <a href="{{route('welcome')}}"><img src="{{asset('assets/imgs/logo.svg')}}" alt="logo" width="80"
+                                                    height="80"/></a>
             </div>
             <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
                 <button class="close-style search-close">
@@ -232,7 +246,8 @@
             </div>
             <div class="mobile-header-info-wrap">
                 <div class="single-mobile-header-info">
-                    <a href="https://maps.app.goo.gl/UwZHiQPR54KAncj19" target="_blank"><i class="fi-rs-marker"></i> Our location </a>
+                    <a href="https://maps.app.goo.gl/UwZHiQPR54KAncj19" target="_blank"><i class="fi-rs-marker"></i> Our
+                        location </a>
                 </div>
                 <div class="single-mobile-header-info">
                     <a href="{{route('login')}}"><i class="fi-rs-user"></i>Log In / Sign Up </a>
@@ -240,11 +255,16 @@
             </div>
             <div class="mobile-social-icon mb-50">
                 <h6 class="mb-15">Follow Us</h6>
-                <a href="https://www.facebook.com/Summitsourcingchina" target="_blank"><img src="{{asset('assets/imgs/theme/icons/icon-facebook-white.svg')}}" alt=""/></a>
-                <a href="https://www.tiktok.com/@summit.sourcing.china" target="_blank"><img src="{{asset('assets/imgs/theme/icons/tiktok.svg')}}" alt=""/></a>
-                <a href="https://www.instagram.com/summitsourcing/"  target="_blank"><img src="{{asset('assets/imgs/theme/icons/icon-instagram-white.svg')}}" alt=""/></a>
-                <a href="https://wa.link/summitsourcing" target="_blank"><img src="{{asset('assets/imgs/theme/icons/whatsapp.svg')}}" alt=""/></a>
-                <a href="https://www.linkedin.com/company/guangzhousummitsourcing" target="_blank"><img src="{{asset('assets/imgs/theme/icons/linkedin.svg')}}" alt=""/></a>
+                <a href="https://www.facebook.com/Summitsourcingchina" target="_blank"><img
+                        src="{{asset('assets/imgs/theme/icons/icon-facebook-white.svg')}}" alt=""/></a>
+                <a href="https://www.tiktok.com/@summit.sourcing.china" target="_blank"><img
+                        src="{{asset('assets/imgs/theme/icons/tiktok.svg')}}" alt=""/></a>
+                <a href="https://www.instagram.com/summitsourcing/" target="_blank"><img
+                        src="{{asset('assets/imgs/theme/icons/icon-instagram-white.svg')}}" alt=""/></a>
+                <a href="https://wa.link/summitsourcing" target="_blank"><img
+                        src="{{asset('assets/imgs/theme/icons/whatsapp.svg')}}" alt=""/></a>
+                <a href="https://www.linkedin.com/company/guangzhousummitsourcing" target="_blank"><img
+                        src="{{asset('assets/imgs/theme/icons/linkedin.svg')}}" alt=""/></a>
             </div>
             <div class="site-copyright">Copyright 2022 © Nest. All rights reserved. Powered by AliThemes.</div>
         </div>
