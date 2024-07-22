@@ -4,49 +4,16 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $category = Category::query()->inRandomOrder()->first();
-        $api_top_products = $this->getTopProducts($category->alibaba_id)['result']['result'];
-        $top_products = [];
-        if(!isset($api_top_products['rankProductModels'])){
-            $category = Category::query()->inRandomOrder()->first();
-            $api_top_products = $this->getTopProducts($category->alibaba_id)['result']['result'];
-            $top_products = [];
-        }
-        foreach ($api_top_products['rankProductModels'] as $product) {
-            $top_products[] = [
-                'item_id' => $product['itemId'],
-                'image' => $product['imgUrl'],
-                'title' => $product['translateTitle'],
-                'service' => $product['serviceList'] ? $product['serviceList'][0] : '',
-                'rating' => $product['goodsScore'] ?? 0,
-                'width' => isset( $product['goodsScore'] ) ? calculateWidth($product['goodsScore']) : 0,
-                'sold' => $category->soldOut,
-                'category' => $category->name,
-            ];
-        }
-
-        $api_best_deals = $this->getBestDeals($category->alibaba_id)['result']['result'];
-        $best_deals = [];
-        foreach ($api_best_deals['rankProductModels'] as $product) {
-            $best_deals[] = [
-                'item_id' => $product['itemId'],
-                'image' => $product['imgUrl'],
-                'title' => $product['translateTitle'],
-                'service' => $product['serviceList'] ? $product['serviceList'][0] : '',
-                'rating' => $product['goodsScore'] ?? 0,
-                'width' => isset( $product['goodsScore'] ) ? calculateWidth($product['goodsScore']) : 0,
-                'sold' => $category->soldOut,
-                'category' => $category->name,
-            ];
-        }
+        $top_products = Product::query()->inRandomOrder()->limit(15)->get();
         $categories = \App\Models\Category::limit(11)->get();
-        return view('frontend.welcome', compact('categories', 'top_products','best_deals'));
+        return view('frontend.welcome', compact('categories', 'top_products'));
     }
 
     public function getTopProducts($catId = null)
@@ -63,6 +30,20 @@ class HomeController extends Controller
         return $alibaba->getTopRankProducts($params);
     }
 
+    public function getRecommendedProducts()
+    {
+        $alibaba = new \App\Services\AlibabaService();
+        $params = [
+            'recommendOfferParam' => json_encode([
+                'beginPage' => 1,
+                'pageSize' => 10,
+                'country' => 'en',
+                'outMemberId' => 'tb14132031'
+            ]),
+        ];
+        return $alibaba->getRecommendedProducts($params);
+    }
+
     public function getBestDeals($catId = null)
     {
         $alibaba = new \App\Services\AlibabaService();
@@ -76,6 +57,22 @@ class HomeController extends Controller
         ];
         return $alibaba->getTopRankProducts($params);
     }
+
+    public function getPalletProducts()
+    {
+        $alibaba = new \App\Services\AlibabaService();
+        $params = [
+            'offerPoolQueryParam' => json_encode([
+                'offerPoolId' => 218866357,
+                'taskId' => 1001,
+                'language' => 'en',
+                'pageNo' => '1',
+                'pageSize' => '20'
+            ]),
+        ];
+        return $alibaba->getPalletProducts($params);
+    }
+
 
     public function staticPages($slug)
     {

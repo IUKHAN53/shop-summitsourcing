@@ -8,7 +8,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 //Route::get('test', [HomeController::class, 'index'])->name('test');
-Route::get('buser', function () {
+Route::get('/buser', function () {
     $user = \App\Models\User::first();
     \Illuminate\Support\Facades\Auth::login($user);
     return redirect()->route('welcome');

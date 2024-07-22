@@ -12,7 +12,8 @@
     <meta property="og:image" content=""/>
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/imgs/logo.svg')}}"/>
     <link rel="stylesheet" href="{{asset('assets/css/plugins/animate.min.css')}}"/>
-    <link rel="stylesheet" href="{{asset('assets/css/main.css?v=5.3')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}"/>
+    <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @stack('styles')
 </head>

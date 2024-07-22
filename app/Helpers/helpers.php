@@ -65,3 +65,11 @@ if (!function_exists('formatCurrency')) {
         }
     }
 }
+
+if (!function_exists('shortenTitle')) {
+    function shortenTitle($title): string
+    {
+        $titleWords = explode(' ', $title);
+        return implode(' ', array_slice($titleWords, 0, 3));
+    }
+}

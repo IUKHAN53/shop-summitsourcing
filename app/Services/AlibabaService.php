@@ -77,6 +77,12 @@ class AlibabaService
         return $this->getPostResponse($apiName, $params);
     }
 
+    public function getRecommendedProducts($params)
+    {
+        $apiName = 'product.search.offerRecommend';
+        return $this->getPostResponse($apiName, $params);
+    }
+
     public function getCategoriesById($category_id)
     {
         $apiName = 'category.translation.getById';
@@ -96,6 +102,12 @@ class AlibabaService
     public function getProductDetails($params)
     {
         $apiName = 'product.search.queryProductDetail';
+        return $this->getPostResponse($apiName, $params);
+    }
+
+    public function getPalletProducts($params)
+    {
+        $apiName = 'pool.product.pull';
         return $this->getPostResponse($apiName, $params);
     }
 
