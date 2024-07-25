@@ -85,7 +85,7 @@
                                     </div>
                                     <div class="product-content-wrap">
                                         <div class="product-category">
-                                            <a href="shop-grid-right.html">{{isset($product['topCategoryId']) ? getProductCategoryName($product['topCategoryId']):''}}</a>
+                                            <a href="#">{{isset($product['topCategoryId']) ? getProductCategoryName($product['topCategoryId']):''}}</a>
                                         </div>
                                         <h2>
                                             <a href="{{route('product-detail',$product['offerId'])}}">{{$product['subjectTrans']}}</a>
@@ -99,7 +99,7 @@
                                         </div>
                                         <div>
                                             <span class="font-small text-muted">By <a
-                                                    href="vendor-details-1.html">{{implode(',', $product['sellerIdentities'])}}</a></span>
+                                                    href="#">{{implode(',', $product['sellerIdentities'])}}</a></span>
                                         </div>
                                         <div class="product-card-bottom">
                                             <div class="product-price">

@@ -101,6 +101,9 @@ class SyncPalletProducts extends Command
         foreach ($productIds as $productId) {
             $this->info("Fetching details for product ID: $productId... (" . $iteration . "/" . $count . ")");
             $data = $this->getProductDetails($productId, $alibaba);
+            if (!isset($data['result']) || !isset($data['result']['result'])) {
+                continue;
+            }
             $result = $data['result']['result'];
             $productList[] = [
                 'offerId' => $result['offerId'],

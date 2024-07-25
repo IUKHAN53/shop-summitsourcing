@@ -11,7 +11,7 @@
                                     @foreach($categories as $category)
                                         <li>
                                             <a href="#">
-                                                <img src="assets/imgs/theme/icons/category-{{$loop->iteration}}.svg"
+                                                <img src="{{asset('assets/imgs/theme/icons/categories/'.$category->name.'.png')}}"
                                                      alt=""/>{{$category->name}}
                                             </a>
                                         </li>
@@ -72,7 +72,7 @@
                         @foreach($categories as $category)
                             <div class="card-2 bg-9 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                                 <figure class="img-hover-scale overflow-hidden">
-                                    <a href=#"><img src="assets/imgs/theme/icons/category-13.png" alt=""/></a>
+                                    <a href=#"><img src="{{asset('assets/imgs/theme/icons/categories/'.$category->name.'.png')}}" alt=""/></a>
                                 </figure>
                                 <h6><a href="#">{{$category->name}}</a></h6>
                             </div>
@@ -85,6 +85,12 @@
             <div class="container">
                 <div class="section-title style-2 wow animate__animated animate__fadeIn">
                     <h3>Amazon Trending products</h3>
+                    <div class="more_categories">
+                        <span class="icon"></span>
+                        <a href="{{route('pallet-products')}}" class="float-end">
+                            Show All
+                        </a>
+                    </div>
                 </div>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">

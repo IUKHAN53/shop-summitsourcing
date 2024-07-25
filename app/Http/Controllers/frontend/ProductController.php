@@ -5,6 +5,7 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\ExchangeRate;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -83,6 +84,24 @@ class ProductController extends Controller
             $attributes[$attribute['attributeNameTrans']] = $attribute['valueTrans'];
         }
         return $attributes;
+    }
+
+    public function getPalletProducts(Request $request)
+    {
+        $pageSize = $request->input('pageSize', 15);
+        $sort = $request->input('sort', 'asc');
+        $orderBy = $request->input('orderBy', 'price');
+        $search = $request->input('search', '');
+
+        $query = Product::query();
+
+        if ($search) {
+            $query->where('title', 'like', '%' . $search . '%');
+        }
+
+        $products = $query->orderBy($orderBy, $sort)->paginate($pageSize);
+
+        return view('frontend.pallet_products', compact('products', 'sort', 'orderBy', 'search'));
     }
 
 

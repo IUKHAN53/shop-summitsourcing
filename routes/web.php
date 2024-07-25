@@ -16,6 +16,7 @@ Route::get('/buser', function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 Route::get('products', [ProductController::class, 'searchProducts'])->name('search-products');
+Route::get('palletProducts', [ProductController::class, 'getPalletProducts'])->name('pallet-products');
 Route::get('product-detail/{id}', [ProductController::class, 'getDetails'])->name('product-detail');
 Route::post('/set-currency', [CurrencyController::class, 'setCurrency'])->name('setCurrency');
 
