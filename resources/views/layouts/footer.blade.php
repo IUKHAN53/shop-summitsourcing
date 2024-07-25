@@ -5,8 +5,8 @@
                 <div class="footer-bottom"></div>
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6">
-                <p class="font-sm mb-0">&copy; {{now()->year}}, <strong class="text-brand">SS ImportHub</strong> <br/>All
-                    rights reserved</p>
+                <p class="font-sm mb-0">&copy; {{now()->year}}, <strong class="text-brand">SS ImportHub</strong> <br/>
+                    Developed By <a href="https://iukhan.tech/">iukhan</a>.  All rights reserved</p>
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block float-end">
                 <div class="mobile-social-icon">
