@@ -33,6 +33,19 @@ class ProductController extends Controller
 
     public function searchProducts(Request $request)
     {
+        if ($request->file('image')) {
+            $alibaba = new \App\Services\AlibabaService();
+            $file = base64_encode(file_get_contents($request->file('image')));
+            $params = [
+                'uploadImageParam' => json_encode([
+                    'imageBase64' => $file,
+                ]),
+            ];
+            $result = $alibaba->uploadImage($params);
+            $data = $result;
+            dd($data);
+        }
+
         $searchTerm = $request->input('search');
         $page = $request->input('page', 1);
         $pageSize = $request->input('pageSize', 15);

@@ -9,9 +9,15 @@
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
-                        <form action="{{route('search-products')}}" method="get">
-                            <input type="text" name="search" placeholder="Search for items..."
-                                   style="max-width: 700px !important;"/>
+                        <form id="searchForm" action="{{ route('search-products') }}" method="post" style="max-width: 660px" class="search-form" enctype="multipart/form-data">
+                            @csrf
+                            <div class="input-group">
+                                <input type="search" name="search" id="searchInput" placeholder="Search for items by keyword or image" class="form-control"/>
+                                <label class="input-group-text" for="inputGroupFile" style="background-color: #ffff; border: none; margin-bottom: 0 !important; padding: 0 !important;">
+                                    <i class="fas fa-camera" style="color: #3bb77e;"></i>
+                                </label>
+                                <input type="file" name="image" class="form-control" id="inputGroupFile" style="display:none;" onchange="handleFileUpload()">
+                            </div>
                         </form>
                     </div>
                     <div class="header-action-right">

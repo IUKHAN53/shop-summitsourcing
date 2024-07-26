@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/main.css')}}"/>
     <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     @stack('styles')
 </head>
 <body>
@@ -33,6 +34,24 @@
 @stack('scripts')
 
 <script>
+    function handleFileUpload() {
+        const fileInput = document.getElementById('inputGroupFile');
+        const searchInput = document.getElementById('searchInput');
+        const form = document.getElementById('searchForm');
+
+        if (fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            const fileType = file.type;
+
+            if (fileType.startsWith('image/')) {
+                searchInput.value = file.name;
+                form.submit();
+            } else {
+                alert('Please upload a valid image file.');
+            }
+        }
+    }
+
     function addToWishlist(productId) {
         let user = '{{auth()->user()}}';
         if (!user) {

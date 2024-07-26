@@ -20,6 +20,7 @@ class Product extends Model
         'unit',
         'moq',
         'rating',
+        'type',
     ];
 
     public function getCategoryAttribute()
@@ -33,6 +34,14 @@ class Product extends Model
         return ($this->rating / $totalScore) * 100;
     }
 
+    public function scopeTrending($query)
+    {
+        return $query->where('type', 'trending');
+    }
 
+    public function scopeBestSelling($query)
+    {
+        return $query->where('type', 'best_selling');
+    }
 
 }

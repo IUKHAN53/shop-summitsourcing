@@ -46,8 +46,7 @@ class AlibabaService
         $params['_aop_signature'] = $this->generateSignature($params, $urlPath);
 
         $query = http_build_query($params);
-        $fullUrl = "{$this->url}/{$urlPath}?{$query}";
-
+        $fullUrl =  "{$this->url}/{$urlPath}?{$query}";
         return $fullUrl;
     }
 
@@ -108,6 +107,24 @@ class AlibabaService
     public function getPalletProducts($params)
     {
         $apiName = 'pool.product.pull';
+        return $this->getPostResponse($apiName, $params);
+    }
+
+    public function getPalletProductsCount($params)
+    {
+        $apiName = 'pool.product.total';
+        return $this->getPostResponse($apiName, $params);
+    }
+
+    public function uploadImage($params)
+    {
+        $apiName = 'product.image.upload';
+        return $this->getPostResponse($apiName, $params);
+    }
+
+    public function searchProductsByImage($params)
+    {
+        $apiName = 'product.search.imageQuery';
         return $this->getPostResponse($apiName, $params);
     }
 

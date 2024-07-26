@@ -159,5 +159,77 @@
                 </div>
             </div>
         </section>
+        <section class="product-tabs section-padding position-relative">
+            <div class="container">
+                <div class="section-title style-2 wow animate__animated animate__fadeIn">
+                    <h3>Amazon Best Selling products</h3>
+                </div>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
+                        <div class="row product-grid-4">
+                            @foreach($best_selling_products as $product)
+                                <div class="col-lg-1-5 col-md-4 col-6 col-sm-6 product-cart-wrap">
+                                    <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
+                                         data-wow-delay=".1s">
+                                        <div class="product-img-action-wrap">
+                                            <div class="product-img product-img-zoom">
+                                                <a href="{{route('product-detail',$product['offerId'])}}">
+                                                    <img class="default-img" src="{{$product['images']}}"
+                                                         alt="" loading="lazy"/>
+                                                    <img class="hover-img" src="{{$product['images']}}"
+                                                         alt="" loading="lazy"/>
+                                                </a>
+                                            </div>
+                                            <div class="product-action-1">
+                                                <a onclick="addToWishlist('{{$product['offerId']}}')" id="wishlist-{{$product['offerId']}}"
+                                                   aria-label="Add To Wishlist" class="action-btn"
+                                                   href="javascript:void(0)">
+                                                    @if(isWishlisted($product['offerId']))
+                                                        <img src="{{asset('assets/heart-solid.svg')}}" alt="">
+                                                    @else
+                                                        <i class="fi-rs-heart"></i>
+                                                    @endif
+                                                </a>
+                                            </div>
+                                            <div class="product-badges product-badges-position product-badges-mrg">
+                                                <span class="hot">Trending</span>
+                                            </div>
+                                        </div>
+                                        <div class="product-content-wrap">
+                                            <div class="product-category">
+                                                <a href="#">{{$product['category']}}</a>
+                                            </div>
+                                            <h2>
+                                                <a href="{{ route('product-detail', $product['offerId']) }}">{{ shortenTitle($product['title']) }}...</a>                                            </h2>
+                                            <div class="product-rate-cover">
+                                                <div class="product-rate d-inline-block">
+                                                    <div class="product-rating"
+                                                         style="width: {{$product['width']}}%"></div>
+                                                </div>
+                                                <span class="font-small ml-5 text-muted"> ({{$product['rating']}}
+                                                    )</span>
+                                            </div>
+                                            <div class="flex flex-row">
+                                                <div class="current-price text-brand">{{convertCurrency($product['price'])}}</div>
+                                                <div>
+                                                    <span class="font-md color3">Minimum Order Quantity</span>
+                                                    <span class="font-md ml-15">{{$product['moq']}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="product-card-bottom">
+                                                <div class="add-cart">
+                                                    <a class="add" href="#"><i class="fi-rs-shopping-cart mr-5"></i>Add
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 @endsection

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('unit')->nullable();
             $table->string('moq')->nullable();
             $table->string('rating')->nullable();
+            $table->string('type')->default('trending');
             $table->timestamps();
         });
     }

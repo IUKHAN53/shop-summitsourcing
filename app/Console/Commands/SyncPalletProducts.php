@@ -35,20 +35,29 @@ class SyncPalletProducts extends Command
         $total = $this->getTotalProductsCount($alibaba);
         $totalPages = ceil($total / 50);
 
+        $this->info("Fetching Products IDs from best selling pallet...");
+
+        $productIds = $this->getBestSellerProducts($alibaba);
+
+        $this->info('Total product IDs fetched: ' . count($productIds));
+
+        $productList2 = $this->fetchProductDetails($productIds, $alibaba, 'best_selling');
+
         $this->info("Total products found: $total. Fetching in $totalPages pages...");
 
         $productIds = $this->getAllProductIds($alibaba, $totalPages);
 
         $this->info('Total product IDs fetched: ' . count($productIds));
 
-        $productList = $this->fetchProductDetails($productIds, $alibaba);
+        $productList1 = $this->fetchProductDetails($productIds, $alibaba);
 
         // Truncate the Product table before inserting new data
         $this->info('Truncating the Product table...');
         Product::truncate();
 
         $this->info('Inserting products into the database...');
-        Product::query()->insert($productList);
+        Product::query()->insert($productList1);
+        Product::query()->insert($productList2);
 
         $this->info('Synchronization completed successfully.');
     }
@@ -56,16 +65,11 @@ class SyncPalletProducts extends Command
     private function getTotalProductsCount(AlibabaService $alibaba): int
     {
         $params = [
-            'offerPoolQueryParam' => json_encode([
-                'offerPoolId' => 218866357,
-                'taskId' => 1001,
-                'language' => 'en',
-                'pageNo' => '1',
-                'pageSize' => '1'
-            ]),
+            'appKey' => 4611591,
+            'palletId' => 218866357,
         ];
-        $data = $alibaba->getPalletProducts($params);
-        return $data['result']['result'][0]['offerPoolTotal'];
+        $data = $alibaba->getPalletProductsCount($params);
+        return $data['result']['model'];
     }
 
     private function getAllProductIds(AlibabaService $alibaba, int $totalPages): array
@@ -93,7 +97,31 @@ class SyncPalletProducts extends Command
         return $productIds;
     }
 
-    private function fetchProductDetails(array $productIds, AlibabaService $alibaba): array
+    public function getBestSellerProducts(AlibabaService $alibaba): array
+    {
+        //        get 30 products from another pallet
+        $productIds = [];
+        $params = [
+            'offerPoolQueryParam' => json_encode([
+                'offerPoolId' => 218873525,
+                'taskId' => 1002,
+                'language' => 'en',
+                'pageNo' => 1,
+                'pageSize' => '30'
+            ]),
+        ];
+        $data = $alibaba->getPalletProducts($params);
+        if (isset($data['result']['success']) && $data['result']['success'] === 'true') {
+            $products = $data['result']['result'];
+            foreach ($products as $productOffer) {
+                $productIds[] = $productOffer['offerId'];
+            }
+        }
+
+        return $productIds;
+    }
+
+    private function fetchProductDetails(array $productIds, AlibabaService $alibaba, $type = 'trending'): array
     {
         $productList = [];
         $count = count($productIds);
@@ -116,6 +144,7 @@ class SyncPalletProducts extends Command
                 'unit' => $result['productSaleInfo']['unitInfo']['transUnit'],
                 'moq' => $result['minOrderQuantity'],
                 'rating' => $result['tradeScore'],
+                'type' => $type,
             ];
             $iteration++;
         }
