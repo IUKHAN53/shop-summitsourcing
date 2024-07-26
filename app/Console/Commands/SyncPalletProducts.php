@@ -51,11 +51,7 @@ class SyncPalletProducts extends Command
 
         $productList1 = $this->fetchProductDetails($productIds, $alibaba);
 
-        // Truncate the Product table before inserting new data
-        $this->info('Truncating the Product table...');
-        Product::truncate();
-
-        $this->info('Inserting products into the database...');
+        $this->info('Inserting new products into the database...');
         Product::query()->insert($productList1);
         Product::query()->insert($productList2);
 
@@ -127,6 +123,12 @@ class SyncPalletProducts extends Command
         $count = count($productIds);
         $iteration = 1;
         foreach ($productIds as $productId) {
+            // Check if the product already exists in the database
+            if (Product::where('offerId', $productId)->exists()) {
+                $this->info("Product ID: $productId already exists. Skipping...");
+                continue;
+            }
+
             $this->info("Fetching details for product ID: $productId... (" . $iteration . "/" . $count . ")");
             $data = $this->getProductDetails($productId, $alibaba);
             if (!isset($data['result']) || !isset($data['result']['result'])) {
