@@ -26,6 +26,7 @@ class ProductController extends Controller
             'rating' => $product_detail['tradeScore'],
             'width' => calculateWidth($product_detail['tradeScore']),
             'seller_info' => $product_detail['sellerDataInfo'],
+            'dropshipping_info' => $product_detail['productShippingInfo'],
         ];
         return view('frontend.product_detail', compact('product'));
     }
@@ -56,11 +57,14 @@ class ProductController extends Controller
                 'price' => $sort
             ];
         }
+        $type = $request->input('type', 'all');
+        $type = $type == 'dropshipping' ? 'isSelect' : 'isQqyx';
 
         $alibaba = new \App\Services\AlibabaService();
         $params = [
             'offerQueryParam' => json_encode([
                 'keyword' => $searchTerm,
+                'filter' => $type,
                 'pageSize' => $pageSize,
                 'beginPage' => $page,
                 'country' => 'en',
@@ -117,5 +121,38 @@ class ProductController extends Controller
         return view('frontend.pallet_products', compact('products', 'sort', 'orderBy', 'search'));
     }
 
+    public function searchDropshippingProducts(Request $request)
+    {
+        $searchTerm = $request->input('searchTerm');
+        $page = $request->input('page', 1);
+        $pageSize = $request->input('pageSize', 15);
+        $sort = $request->input('sort');
+        $orderBy = [];
+        if ($sort != 'default') {
+            $orderBy = [
+                'price' => $sort
+            ];
+        }
+
+        $alibaba = new \App\Services\AlibabaService();
+        $params = [
+            'offerQueryParam' => json_encode([
+                'keyword' => $searchTerm,
+                'filter' => 'isSelect',
+                'pageSize' => $pageSize,
+                'beginPage' => $page,
+                'country' => 'en',
+                $sort != 'default' ? 'sort' : '' => json_encode($orderBy)
+            ]),
+        ];
+
+        $result = $alibaba->searchProductsByKeyword($params);
+        $data = $result['result']['result'];
+        $total_records = $data['totalRecords'];
+        $pages = $data['totalPage'];
+        $products = $data['data'];
+
+        return view('frontend.dropshipping', compact('products', 'searchTerm', 'total_records', 'pages', 'page', 'pageSize', 'sort'));
+    }
 
 }

@@ -20,13 +20,13 @@
                                     <div class="product-image-slider">
                                         @foreach($product['images'] as $image)
                                             <figure class="border-radius-10">
-                                                <img src="{{$image}}" alt="product image" />
+                                                <img src="{{$image}}" alt="product image"/>
                                             </figure>
                                         @endforeach
                                     </div>
                                     <div class="slider-nav-thumbnails">
                                         @foreach($product['images'] as $image)
-                                            <div><img src="{{$image}}" alt="product image" /></div>
+                                            <div><img src="{{$image}}" alt="product image"/></div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -44,7 +44,8 @@
                                     </div>
                                     <div class="clearfix product-price-cover">
                                         <div class="product-price primary-color float-left">
-                                            <span class="current-price text-brand">{{convertCurrency($product['price'])}}</span>
+                                            <span
+                                                class="current-price text-brand">{{convertCurrency($product['price'])}}</span>
                                             <span>
                                                 <span class="font-md color3 ml-15">Minimum Order Quantity</span>
                                                 <span class="font-md ml-15">{{$product['moq']}}</span>
@@ -58,16 +59,39 @@
                                             <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                         </div>
                                         <div class="product-extra-link2">
-                                            <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>Add to cart</button>
-                                            <a aria-label="Add To Wishlist" class="action-btn hover-up" href="#"><i class="fi-rs-heart"></i></a>
+                                            <button type="submit" class="button button-add-to-cart"><i
+                                                    class="fi-rs-shopping-cart"></i>Add to cart
+                                            </button>
+                                            <a aria-label="Add To Wishlist" class="action-btn hover-up" href="#"><i
+                                                    class="fi-rs-heart"></i></a>
                                         </div>
                                     </div>
                                     <div class="font-xs">
-                                        <ul class="mr-50 float-start">
-                                            @foreach($product['attributes'] as $name=>$value)
-                                                <li class="mb-5">{{$name}}: <span class="text-brand">{{$value}}</span></li>
-                                            @endforeach
-                                        </ul>
+                                        <div class="d-flex">
+                                            <ul class="mr-50 flex-fill">
+                                                @foreach($product['attributes'] as $name => $value)
+                                                    <li class="mb-5">{{ $name }}:
+                                                        <span class="text-brand">
+                                                            {{ is_numeric($value) ? number_format(floatval($value), 2) : $value }}
+                                                        </span>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                            @if(isset($product['dropshipping_info']))
+                                                <ul class="mr-50 flex-fill">
+                                                    @foreach($product['dropshipping_info'] as $name => $value)
+                                                        <li class="mb-5">{{ $name }}:
+                                                            <span class="text-brand">
+                                                                {{ is_numeric($value) ? number_format(floatval($value), 2) : $value }}
+                                                                @if(in_array($name, ['width', 'height', 'length']))
+                                                                    cm
+                                                                @endif
+                                                            </span>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -76,10 +100,12 @@
                             <div class="tab-style3">
                                 <ul class="nav nav-tabs text-uppercase">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="Description-tab" data-bs-toggle="tab" href="#Description">Description</a>
+                                        <a class="nav-link active" id="Description-tab" data-bs-toggle="tab"
+                                           href="#Description">Description</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">Seller Scores</a>
+                                        <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab"
+                                           href="#Vendor-info">Seller Scores</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content shop_info_tab entry-main-content">
@@ -110,21 +136,30 @@
                                             <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
                                                     <a href="shop-product-right.html" tabindex="0">
-                                                        <img class="default-img" src="assets/imgs/shop/product-2-1.jpg" alt="" />
-                                                        <img class="hover-img" src="assets/imgs/shop/product-2-2.jpg" alt="" />
+                                                        <img class="default-img" src="assets/imgs/shop/product-2-1.jpg"
+                                                             alt=""/>
+                                                        <img class="hover-img" src="assets/imgs/shop/product-2-2.jpg"
+                                                             alt=""/>
                                                     </a>
                                                 </div>
                                                 <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="shop-wishlist.html" tabindex="0"><i class="fi-rs-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn small hover-up" href="shop-compare.html" tabindex="0"><i class="fi-rs-shuffle"></i></a>
+                                                    <a aria-label="Quick view" class="action-btn small hover-up"
+                                                       data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
+                                                            class="fi-rs-search"></i></a>
+                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up"
+                                                       href="shop-wishlist.html" tabindex="0"><i
+                                                            class="fi-rs-heart"></i></a>
+                                                    <a aria-label="Compare" class="action-btn small hover-up"
+                                                       href="shop-compare.html" tabindex="0"><i
+                                                            class="fi-rs-shuffle"></i></a>
                                                 </div>
                                                 <div class="product-badges product-badges-position product-badges-mrg">
                                                     <span class="hot">Hot</span>
                                                 </div>
                                             </div>
                                             <div class="product-content-wrap">
-                                                <h2><a href="shop-product-right.html" tabindex="0">Ulstra Bass Headphone</a></h2>
+                                                <h2><a href="shop-product-right.html" tabindex="0">Ulstra Bass
+                                                        Headphone</a></h2>
                                                 <div class="rating-result" title="90%">
                                                     <span> </span>
                                                 </div>
@@ -140,21 +175,30 @@
                                             <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
                                                     <a href="shop-product-right.html" tabindex="0">
-                                                        <img class="default-img" src="assets/imgs/shop/product-3-1.jpg" alt="" />
-                                                        <img class="hover-img" src="assets/imgs/shop/product-4-2.jpg" alt="" />
+                                                        <img class="default-img" src="assets/imgs/shop/product-3-1.jpg"
+                                                             alt=""/>
+                                                        <img class="hover-img" src="assets/imgs/shop/product-4-2.jpg"
+                                                             alt=""/>
                                                     </a>
                                                 </div>
                                                 <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="shop-wishlist.html" tabindex="0"><i class="fi-rs-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn small hover-up" href="shop-compare.html" tabindex="0"><i class="fi-rs-shuffle"></i></a>
+                                                    <a aria-label="Quick view" class="action-btn small hover-up"
+                                                       data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
+                                                            class="fi-rs-search"></i></a>
+                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up"
+                                                       href="shop-wishlist.html" tabindex="0"><i
+                                                            class="fi-rs-heart"></i></a>
+                                                    <a aria-label="Compare" class="action-btn small hover-up"
+                                                       href="shop-compare.html" tabindex="0"><i
+                                                            class="fi-rs-shuffle"></i></a>
                                                 </div>
                                                 <div class="product-badges product-badges-position product-badges-mrg">
                                                     <span class="sale">-12%</span>
                                                 </div>
                                             </div>
                                             <div class="product-content-wrap">
-                                                <h2><a href="shop-product-right.html" tabindex="0">Smart Bluetooth Speaker</a></h2>
+                                                <h2><a href="shop-product-right.html" tabindex="0">Smart Bluetooth
+                                                        Speaker</a></h2>
                                                 <div class="rating-result" title="90%">
                                                     <span> </span>
                                                 </div>
@@ -170,21 +214,30 @@
                                             <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
                                                     <a href="shop-product-right.html" tabindex="0">
-                                                        <img class="default-img" src="assets/imgs/shop/product-4-1.jpg" alt="" />
-                                                        <img class="hover-img" src="assets/imgs/shop/product-4-2.jpg" alt="" />
+                                                        <img class="default-img" src="assets/imgs/shop/product-4-1.jpg"
+                                                             alt=""/>
+                                                        <img class="hover-img" src="assets/imgs/shop/product-4-2.jpg"
+                                                             alt=""/>
                                                     </a>
                                                 </div>
                                                 <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="shop-wishlist.html" tabindex="0"><i class="fi-rs-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn small hover-up" href="shop-compare.html" tabindex="0"><i class="fi-rs-shuffle"></i></a>
+                                                    <a aria-label="Quick view" class="action-btn small hover-up"
+                                                       data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
+                                                            class="fi-rs-search"></i></a>
+                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up"
+                                                       href="shop-wishlist.html" tabindex="0"><i
+                                                            class="fi-rs-heart"></i></a>
+                                                    <a aria-label="Compare" class="action-btn small hover-up"
+                                                       href="shop-compare.html" tabindex="0"><i
+                                                            class="fi-rs-shuffle"></i></a>
                                                 </div>
                                                 <div class="product-badges product-badges-position product-badges-mrg">
                                                     <span class="new">New</span>
                                                 </div>
                                             </div>
                                             <div class="product-content-wrap">
-                                                <h2><a href="shop-product-right.html" tabindex="0">HomeSpeak 12UEA Goole</a></h2>
+                                                <h2><a href="shop-product-right.html" tabindex="0">HomeSpeak 12UEA
+                                                        Goole</a></h2>
                                                 <div class="rating-result" title="90%">
                                                     <span> </span>
                                                 </div>
@@ -200,21 +253,30 @@
                                             <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
                                                     <a href="shop-product-right.html" tabindex="0">
-                                                        <img class="default-img" src="assets/imgs/shop/product-5-1.jpg" alt="" />
-                                                        <img class="hover-img" src="assets/imgs/shop/product-3-2.jpg" alt="" />
+                                                        <img class="default-img" src="assets/imgs/shop/product-5-1.jpg"
+                                                             alt=""/>
+                                                        <img class="hover-img" src="assets/imgs/shop/product-3-2.jpg"
+                                                             alt=""/>
                                                     </a>
                                                 </div>
                                                 <div class="product-action-1">
-                                                    <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i class="fi-rs-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up" href="shop-wishlist.html" tabindex="0"><i class="fi-rs-heart"></i></a>
-                                                    <a aria-label="Compare" class="action-btn small hover-up" href="shop-compare.html" tabindex="0"><i class="fi-rs-shuffle"></i></a>
+                                                    <a aria-label="Quick view" class="action-btn small hover-up"
+                                                       data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
+                                                            class="fi-rs-search"></i></a>
+                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up"
+                                                       href="shop-wishlist.html" tabindex="0"><i
+                                                            class="fi-rs-heart"></i></a>
+                                                    <a aria-label="Compare" class="action-btn small hover-up"
+                                                       href="shop-compare.html" tabindex="0"><i
+                                                            class="fi-rs-shuffle"></i></a>
                                                 </div>
                                                 <div class="product-badges product-badges-position product-badges-mrg">
                                                     <span class="hot">Hot</span>
                                                 </div>
                                             </div>
                                             <div class="product-content-wrap">
-                                                <h2><a href="shop-product-right.html" tabindex="0">Dadua Camera 4K 2022EF</a></h2>
+                                                <h2><a href="shop-product-right.html" tabindex="0">Dadua Camera 4K
+                                                        2022EF</a></h2>
                                                 <div class="rating-result" title="90%">
                                                     <span> </span>
                                                 </div>

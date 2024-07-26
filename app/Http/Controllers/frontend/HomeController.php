@@ -59,12 +59,12 @@ class HomeController extends Controller
         return $alibaba->getTopRankProducts($params);
     }
 
-    public function getPalletProducts()
+    public function getPalletProducts($offerPoolId = 218866357)
     {
         $alibaba = new \App\Services\AlibabaService();
         $params = [
             'offerPoolQueryParam' => json_encode([
-                'offerPoolId' => 218866357,
+                'offerPoolId' => $offerPoolId,
                 'taskId' => 1001,
                 'language' => 'en',
                 'pageNo' => '1',

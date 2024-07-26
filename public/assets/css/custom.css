@@ -25,6 +25,10 @@
 
 }
 
+.select2-container{
+    width: 20% !important;
+}
+
 @media only screen and (max-width:768px){
     .logo-width-1 > a > img {
         width: 70px;
