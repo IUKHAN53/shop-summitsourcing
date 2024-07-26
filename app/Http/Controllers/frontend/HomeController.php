@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function index()
     {
         $top_products = Product::query()->trending()->inRandomOrder()->limit(15)->get();
-        $best_selling_products = Product::query()->best_selling()->inRandomOrder()->limit(15)->get();
+        $best_selling_products = Product::query()->bestSelling()->inRandomOrder()->limit(15)->get();
         $categories = \App\Models\Category::limit(11)->get();
         return view('frontend.welcome', compact('categories', 'top_products', 'best_selling_products'));
     }
