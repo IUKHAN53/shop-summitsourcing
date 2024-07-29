@@ -17,6 +17,8 @@ return new class extends Migration {
             $table->boolean('leaf')->default(false);
             $table->integer('level')->default(0);
             $table->unsignedBigInteger('parent_id')->nullable();
+            $table->string('icon')->nullable();
+            $table->string('pallet_id')->nullable();
             $table->timestamps();
         });
     }

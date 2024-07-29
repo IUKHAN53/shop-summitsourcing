@@ -128,7 +128,7 @@
             <div class="container">
                 <div class="header-wrap header-space-between position-relative">
                     <div class="logo logo-width-1 d-block d-lg-none">
-                        <a href="#"><img src="{{asset('assets/imgs/logo.svg')}}" alt="logo"/></a>
+                        <a href="{{route('welcome')}}"><img src="{{asset('assets/imgs/logo.svg')}}" alt="logo"/></a>
                     </div>
                     <div class="header-nav d-none d-lg-flex">
                         <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
@@ -141,7 +141,7 @@
                                         <a href="#">Categories</a>
                                     </li>
                                     <li class="hot-deals">
-                                        <a href="{{route('static-page','dropshipping')}}">Dropshipping</a>
+                                        <a href="{{route('dropshipping')}}">Dropshipping</a>
                                     </li>
                                     <li class="hot-deals">
                                         <a href="{{route('static-page','services')}}">Our Services</a>
@@ -222,9 +222,24 @@
                 </div>
             </div>
             <div class="mobile-search search-style-3 custom-search mobile-header-border">
-                <form action="{{route('search-products')}}" method="get">
-                    <input type="text" name="search" placeholder="Search for items..."/>
-                    <button type="submit"><i class="fi-rs-search"></i></button>
+                <form id="searchForm" action="{{ route('search-products') }}" method="post"
+                      style="max-width: 660px" class="search-form" enctype="multipart/form-data">
+                    @csrf
+                    <select class="select-active select2-hidden-accessible" name="type">
+                        <option value="all">All Products</option>
+                        <option value="dropshipping">Dropshipping</option>
+                    </select>
+                    <div class="input-group">
+                        <input type="search" name="search" id="searchInput"
+                               placeholder="Search for items by keyword or image" class="form-control"/>
+                        <label class="input-group-text" for="inputGroupFile"
+                               style="background-color: #ffff; border: none; margin-bottom: 0 !important; padding: 0 !important;">
+                            <i class="fas fa-camera" style="color: #3bb77e;"></i>
+                        </label>
+                        <input type="file" name="image" class="form-control" id="inputGroupFile"
+                               style="display:none;" onchange="handleFileUpload()">
+                        <button type="submit"><i class="fi-rs-search"></i></button>
+                    </div>
                 </form>
             </div>
         </div>

@@ -46,11 +46,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
     Route::get('/wishlist/remove/{id}', [WishlistController::class, 'removeItem'])->name('wishlist.remove');
     Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
-//
-//    Route::get('/cart', [CartController::class, 'index'])->name('wishlist.index');
-//    Route::get('/wishlist/remove/{id}', [WishlistController::class, 'removeItem'])->name('wishlist.remove');
-//    Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
+
+    Route::group(['prefix' => 'admin'], function () {
+    });
+
 });
+
+
+
 
 require __DIR__.'/auth.php';
 Route::get('/{slug}', [HomeController::class, 'staticPages'])->name('static-page');
