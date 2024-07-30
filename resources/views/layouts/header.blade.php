@@ -9,9 +9,8 @@
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
-                        <form id="searchForm" action="{{ route('search-products') }}" method="post"
+                        <form id="searchForm" action="{{ route('search-products') }}" method="get"
                               style="max-width: 660px" class="search-form" enctype="multipart/form-data">
-                            @csrf
                             <select class="select-active select2-hidden-accessible" name="type">
                                 <option value="all">All Products</option>
                                 <option value="dropshipping">Dropshipping</option>
@@ -222,7 +221,7 @@
                 </div>
             </div>
             <div class="mobile-search search-style-3 custom-search mobile-header-border">
-                <form id="searchForm" action="{{ route('search-products') }}" method="post"
+                <form id="searchForm" action="{{ route('search-products') }}" method="get"
                       style="max-width: 660px" class="search-form" enctype="multipart/form-data">
                     @csrf
                     <select class="select-active select2-hidden-accessible" name="type">

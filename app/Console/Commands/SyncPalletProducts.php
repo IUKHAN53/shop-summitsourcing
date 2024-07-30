@@ -13,7 +13,7 @@ class SyncPalletProducts extends Command
      *
      * @var string
      */
-    protected $signature = 'app:sync-pallet-products';
+    protected $signature = 'app:sync-pallet-products {limit? : The number of products to sync}';
 
     /**
      * The console command description.
@@ -28,15 +28,16 @@ class SyncPalletProducts extends Command
     public function handle()
     {
         $alibaba = new AlibabaService();
+        $limit = $this->argument('limit');
         $this->info('Starting the synchronization of pallet products...');
 
-        $this->syncProducts($alibaba, 218866357, 'trending');
-        $this->syncBestSellingProducts($alibaba);
+        $this->syncProducts($alibaba, 218866357, 'trending', $limit);
+        $this->syncBestSellingProducts($alibaba, $limit);
 
         $this->info('Synchronization completed successfully.');
     }
 
-    private function syncProducts(AlibabaService $alibaba, int $palletId, string $type)
+    private function syncProducts(AlibabaService $alibaba, int $palletId, string $type, ?int $limit)
     {
         $this->info("Fetching total number of products for pallet ID: $palletId...");
         $total = $this->getTotalProductsCount($alibaba, $palletId);
@@ -44,17 +45,17 @@ class SyncPalletProducts extends Command
 
         $this->info("Total products found: $total. Fetching in $totalPages pages...");
 
-        $productIds = $this->getAllProductIds($alibaba, $palletId, $totalPages);
+        $productIds = $this->getAllProductIds($alibaba, $palletId, $totalPages, $limit);
 
         $this->info('Total product IDs fetched: ' . count($productIds));
 
-        $productList = $this->fetchProductDetails($productIds, $alibaba, $type);
+        $productList = $this->fetchProductDetails($productIds, $alibaba, $type, $limit);
 
         $this->info('Inserting new products into the database...');
         Product::query()->insert($productList);
     }
 
-    private function syncBestSellingProducts(AlibabaService $alibaba)
+    private function syncBestSellingProducts(AlibabaService $alibaba, ?int $limit)
     {
         $palletId = 218873525;
 
@@ -66,11 +67,11 @@ class SyncPalletProducts extends Command
 
         $this->info("Fetching Products IDs from best selling pallet on page $page...");
 
-        $productIds = $this->getBestSellerProducts($alibaba, $page, $palletId);
+        $productIds = $this->getBestSellerProducts($alibaba, $page, $palletId, $limit);
 
         $this->info('Total product IDs fetched: ' . count($productIds));
 
-        $productList = $this->fetchProductDetails($productIds, $alibaba, 'best_selling');
+        $productList = $this->fetchProductDetails($productIds, $alibaba, 'best_selling', $limit);
 
         $this->info('Inserting new best selling products into the database...');
         Product::query()->insert($productList);
@@ -86,9 +87,10 @@ class SyncPalletProducts extends Command
         return $data['result']['model'];
     }
 
-    private function getAllProductIds(AlibabaService $alibaba, int $palletId, int $totalPages): array
+    private function getAllProductIds(AlibabaService $alibaba, int $palletId, int $totalPages, ?int $limit): array
     {
         $productIds = [];
+        $totalFetched = 0;
         for ($i = 1; $i <= $totalPages; $i++) {
             $this->info("Fetching product IDs from page $i...");
             $params = [
@@ -105,13 +107,17 @@ class SyncPalletProducts extends Command
                 $products = $data['result']['result'];
                 foreach ($products as $productOffer) {
                     $productIds[] = $productOffer['offerId'];
+                    $totalFetched++;
+                    if ($limit && $totalFetched >= $limit) {
+                        break 2;
+                    }
                 }
             }
         }
         return $productIds;
     }
 
-    public function getBestSellerProducts(AlibabaService $alibaba, int $page, int $palletId): array
+    public function getBestSellerProducts(AlibabaService $alibaba, int $page, int $palletId, ?int $limit): array
     {
         $productIds = [];
         $params = [
@@ -128,13 +134,16 @@ class SyncPalletProducts extends Command
             $products = $data['result']['result'];
             foreach ($products as $productOffer) {
                 $productIds[] = $productOffer['offerId'];
+                if ($limit && count($productIds) >= $limit) {
+                    break;
+                }
             }
         }
 
         return $productIds;
     }
 
-    private function fetchProductDetails(array $productIds, AlibabaService $alibaba, string $type): array
+    private function fetchProductDetails(array $productIds, AlibabaService $alibaba, string $type, ?int $limit): array
     {
         $productList = [];
         $count = count($productIds);
@@ -166,6 +175,9 @@ class SyncPalletProducts extends Command
                 'type' => $type,
             ];
             $iteration++;
+            if ($limit && count($productList) >= $limit) {
+                break;
+            }
         }
         return $productList;
     }

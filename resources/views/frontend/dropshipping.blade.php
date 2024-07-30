@@ -75,8 +75,8 @@
                                         <div class="product-img-action-wrap">
                                             <div class="product-img product-img-zoom">
                                                 <a href="{{route('product-detail',$product['offerId'])}}">
-                                                    <img class="default-img" src="{{$product['imageUrl']}}" alt=""/>
-                                                    <img class="hover-img" src="{{$product['imageUrl']}}" alt=""/>
+                                                    <img class="default-img" loading="lazy" src="{{$product['imageUrl']}}" alt=""/>
+                                                    <img class="hover-img" loading="lazy" src="{{$product['imageUrl']}}" alt=""/>
                                                 </a>
                                             </div>
                                             <div class="product-action-1">
