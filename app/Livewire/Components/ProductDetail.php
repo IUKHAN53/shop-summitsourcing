@@ -8,8 +8,13 @@ use Livewire\Component;
 class ProductDetail extends Component
 {
     public array $skus = [];
-    public array $sku_groups = [];
-    public array $selectedSku = [];
+
+    public $sku_groups;
+    public $selectedAttributes = [];
+    public $selectedSku;
+    public $currentGroup;
+    public $attributeStack = [];
+
     public array $product_attributes = [];
     public array $product = [];
     public float $price = 0;
@@ -20,6 +25,8 @@ class ProductDetail extends Component
         $product_detail = $this->getProductDetails($id)['result']['result'];
         $this->skus = $product_detail['productSkuInfos'];
         $this->sku_groups = $this->makeSkuGroups($product_detail['productSkuInfos']);
+        $this->currentGroup = $this->sku_groups;
+        $this->setDefaultSelectedSku();
         $this->product_attributes = $this->cleanAttributes($product_detail['productAttribute']);
         $this->price = $product_detail['productSaleInfo']['priceRangeList'][0]['price'];
         $this->quantity = $product_detail['productSaleInfo']['amountOnSale'];
@@ -64,27 +71,98 @@ class ProductDetail extends Component
 
     }
 
-    public function makeSkuGroups(mixed $skus)
+    public function makeSkuGroups($skus)
     {
         $sku_groups = [];
+
         foreach ($skus as $sku) {
-            foreach ($sku['skuAttributes'] as $attribute) {
-                $sku_groups[$attribute['attributeNameTrans']][] = [
-                    'id' => $sku['skuId'],
-                    'name' => $attribute['valueTrans'],
-                    'price' => $sku['price'] ?? $this->price,
-                    'amountOnSale' => $sku['amountOnSale'],
-                    'image' => $attribute['skuImageUrl'] ?? null,
-                ];
-            }
+            $attributes = $sku['skuAttributes'];
+            $price = $sku['consignPrice'] ?? $this->price;
+            $amountOnSale = $sku['amountOnSale'];
+            $skuId = $sku['skuId'];
+
+            $this->addAttributesToGroup($sku_groups, $attributes, $price, $amountOnSale, $skuId);
         }
+
         return $sku_groups;
     }
 
-    public function selectSku($sku)
+    private function addAttributesToGroup(&$group, $attributes, $price, $amountOnSale, $skuId)
     {
-        dd($sku); // This will return the selected sku (array
-        $this->selectedSku = $sku;
+        $attribute = array_shift($attributes);
+
+        if (!isset($group[$attribute['attributeNameTrans']])) {
+            $group[$attribute['attributeNameTrans']] = [];
+        }
+
+        if (!isset($group[$attribute['attributeNameTrans']][$attribute['valueTrans']])) {
+            $group[$attribute['attributeNameTrans']][$attribute['valueTrans']] = [
+                'childAttributes' => []
+            ];
+        }
+
+        if (empty($attributes)) {
+            $group[$attribute['attributeNameTrans']][$attribute['valueTrans']] = [
+                'id' => $skuId,
+                'price' => $price,
+                'amountOnSale' => $amountOnSale,
+                'image' => $attribute['skuImageUrl'] ?? null,
+            ];
+        } else {
+            $this->addAttributesToGroup(
+                $group[$attribute['attributeNameTrans']][$attribute['valueTrans']]['childAttributes'],
+                $attributes,
+                $price,
+                $amountOnSale,
+                $skuId
+            );
+        }
+    }
+
+    public function resetAndSelectAttribute($attribute, $value)
+    {
+        $this->selectedAttributes = [];
+        $this->selectedSku = null;
+        $this->currentGroup = $this->sku_groups;
+        $this->attributeStack = [];
+
+        $this->selectAttribute($attribute, $value);
+    }
+
+    public function selectAttribute($attribute, $value)
+    {
+        $this->selectedAttributes[$attribute] = $value;
+
+        if (isset($this->currentGroup[$attribute][$value]['childAttributes']) && !empty($this->currentGroup[$attribute][$value]['childAttributes'])) {
+            $this->currentGroup = $this->currentGroup[$attribute][$value]['childAttributes'];
+            $this->attributeStack[] = [
+                'name' => $attribute,
+                'group' => $this->currentGroup
+            ];
+            $this->selectedSku = null;
+        } else {
+            $this->selectedSku = $this->currentGroup[$attribute][$value];
+            $this->attributeStack[] = [
+                'name' => $attribute,
+                'group' => []
+            ];
+        }
+    }
+
+    private function setDefaultSelectedSku()
+    {
+        foreach ($this->sku_groups as $rootName => $group) {
+            foreach ($group as $value => $details) {
+                if (isset($details['childAttributes']) && !empty($details['childAttributes'])) {
+                    $this->selectAttribute($rootName, $value);
+                    return;
+                } else {
+                    $this->selectedSku = $details;
+                    $this->selectedAttributes[$rootName] = $value;
+                    return;
+                }
+            }
+        }
     }
 
 }

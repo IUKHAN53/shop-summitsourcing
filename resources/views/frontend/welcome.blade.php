@@ -83,14 +83,11 @@
         </section>
         <section class="product-tabs section-padding position-relative">
             <div class="container">
-                <div class="section-title style-2 wow animate__animated animate__fadeIn">
-                    <h3>Amazon Trending products</h3>
-                    <div class="more_categories">
-                        <span class="icon"></span>
-                        <a href="{{route('pallet-products')}}" class="float-end">
-                            Show All
-                        </a>
-                    </div>
+                <div class="section-title flex flex-col">
+                    <h3 class="flex-start">Amazon Trending products</h3>
+                    <a href="{{route('pallet-products')}}" class="flex-end">
+                        Show All
+                    </a>
                 </div>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
@@ -99,7 +96,7 @@
                                 <div class="col-lg-1-5 col-md-4 col-6 col-sm-6 product-cart-wrap">
                                     <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
                                          data-wow-delay=".1s">
-                                        <div class="product-img-action-wrap">
+                                        <div class="product-img-action-wrap" style="padding: 0 !important;">
                                             <div class="product-img product-img-zoom">
                                                 <a href="{{route('product-detail',$product['offerId'])}}">
                                                     <img class="default-img" src="{{$product['images']}}"
@@ -140,7 +137,7 @@
                                             <div class="flex flex-row">
                                                 <div class="current-price text-brand">{{convertCurrency($product['price'])}}</div>
                                                 <div>
-                                                    <span class="font-md color3">Minimum Order Quantity</span>
+                                                    <span class="font-md color3">MOQ</span>
                                                     <span class="font-md ml-15">{{$product['moq']}}</span>
                                                 </div>
                                             </div>
@@ -171,7 +168,7 @@
                                 <div class="col-lg-1-5 col-md-4 col-6 col-sm-6 product-cart-wrap">
                                     <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
                                          data-wow-delay=".1s">
-                                        <div class="product-img-action-wrap">
+                                        <div class="product-img-action-wrap" style="padding: 0 !important;">
                                             <div class="product-img product-img-zoom">
                                                 <a href="{{route('product-detail',$product['offerId'])}}">
                                                     <img class="default-img" src="{{$product['images']}}"
@@ -212,7 +209,7 @@
                                             <div class="flex flex-row">
                                                 <div class="current-price text-brand">{{convertCurrency($product['price'])}}</div>
                                                 <div>
-                                                    <span class="font-md color3">Minimum Order Quantity</span>
+                                                    <span class="font-md color3">MOQ</span>
                                                     <span class="font-md ml-15">{{$product['moq']}}</span>
                                                 </div>
                                             </div>

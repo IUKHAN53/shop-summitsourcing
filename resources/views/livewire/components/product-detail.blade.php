@@ -1,7 +1,7 @@
 <div>
     <div class="row mb-50 mt-30">
         <div class="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
-            <div class="detail-gallery">
+            <div class="detail-gallery" wire:ignore>
                 <span class="zoom-icon"><i class="fi-rs-search"></i></span>
                 <div class="product-image-slider">
                     @foreach($product['images'] as $image)
@@ -31,51 +31,57 @@
                 <div class="clearfix product-price-cover">
                     <div class="product-price primary-color float-left">
                         <span
-                            class="current-price text-brand">{{convertCurrency($price)}}</span>
+                            class="current-price text-brand">{{convertCurrency($selectedSku['price'] ?? $price)}}</span>
                         <span>
-                            <span class="font-md color3 ml-15">Minimum Order Quantity</span>
-                            <span class="font-md ml-15">{{$product['moq']}}</span>
+                            <span class="font-md ml-15">{{$selectedSku['amountOnSale'] ?? $product['moq']}}</span>
+                            <span class="font-md color3 ml-15">In Stock</span>
                         </span>
                     </div>
                 </div>
-                @foreach($sku_groups as $name => $group)
-                    <div class="attr-detail attr-size mb-30">
-                        <strong class="mr-10">{{ $name }}: </strong>
-                        @if($selectedSku)
-                            <span class="text-brand">{{ $selectedSku }}</span>
-                        @endif
-                        <ul class="list-filter size-filter font-small">
-                            <li class="more">
-                                <a href="#" class="more-btn" data-bs-toggle="modal"
-                                   data-bs-target="#skuModal-{{ $loop->index }}">Select...</a>
-                            </li>
-                        </ul>
-                    </div>
-                    {{--    modal fpr attributes--}}
-                    <div class="modal fade" id="skuModal-{{ $loop->index }}" tabindex="-1" role="dialog"
-                         aria-labelledby="skuModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document" style="z-index: 999">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="skuModalLabel">Select SKU for {{ $name }}</h5>
-                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <ul class="list-filter size-filter font-small">
-                                        @foreach($group as $type2)
-                                            <li>
-                                                <a href="#" wire:click.prevent="selectSku('{{ $type2['id'] }}')"
-                                                   data-bs-dismiss="modal">{{ $type2['name'] }}</a>
+
+                <div>
+                    @foreach($sku_groups as $rootName => $group)
+                        <div class="attr-detail attr-size mb-30">
+                            <strong class="mr-10">{{ $rootName }}: </strong>
+                            <ul class="list-filter size-filter font-small">
+                                @foreach($group as $value => $details)
+                                    <li class="{{ isset($selectedAttributes[$rootName]) && $selectedAttributes[$rootName] === $value ? 'active' : '' }}">
+                                        <a href="#"
+                                           wire:click.prevent="resetAndSelectAttribute('{{ $rootName }}', '{{ $value }}')">
+                                            {{ $value }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @break
+                    @endforeach
+
+                    @foreach($attributeStack as $index => $groupInfo)
+                        @if(!empty($groupInfo['group']))
+                            <div class="attr-detail attr-size mb-30">
+                                @php
+                                    $attributeName = array_keys($groupInfo['group'])[0];
+                                @endphp
+                                <strong class="mr-10">{{ $attributeName }}: </strong>
+                                <ul class="list-filter size-filter font-small">
+                                    @foreach($groupInfo['group'] as $name => $group)
+                                        @foreach($group as $value => $details)
+                                            <li class="{{ isset($selectedAttributes[$name]) && $selectedAttributes[$name] === $value ? 'active' : '' }}">
+                                                <a href="#"
+                                                   wire:click.prevent="selectAttribute('{{ $name }}', '{{ $value }}')">
+                                                    {{ $value }}
+                                                </a>
                                             </li>
                                         @endforeach
-                                    </ul>
-                                </div>
+                                    @endforeach
+                                </ul>
                             </div>
-                        </div>
-                    </div>
-                @endforeach
+                        @endif
+                    @endforeach
+                </div>
+
+
                 <div class="detail-extralink mb-50">
                     <div class="detail-qty border radius">
                         <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
