@@ -10,9 +10,8 @@
                                 <ul>
                                     @foreach($categories as $category)
                                         <li>
-                                            <a href="#">
-                                                <img src="{{asset('assets/imgs/theme/icons/categories/'.$category->name.'.png')}}"
-                                                     alt=""/>{{$category->name}}
+                                            <a href="{{route('cat-products', $category->id)}}">
+                                                <img src="{{$category->image}}" alt=""/>{{$category->name}}
                                             </a>
                                         </li>
                                     @endforeach
@@ -72,9 +71,13 @@
                         @foreach($categories as $category)
                             <div class="card-2 bg-9 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                                 <figure class="img-hover-scale overflow-hidden">
-                                    <a href=#"><img src="{{asset('assets/imgs/theme/icons/categories/'.$category->name.'.png')}}" alt=""/></a>
+                                    <a href="{{route('cat-products', $category->id)}}">
+                                        <img src="{{$category->image}}" alt=""/>
+                                    </a>
                                 </figure>
-                                <h6><a href="#">{{$category->name}}</a></h6>
+                                <h6>
+                                    <a href="{{route('cat-products', $category->id)}}">{{$category->name}}</a>
+                                </h6>
                             </div>
                         @endforeach
                     </div>
