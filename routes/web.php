@@ -7,6 +7,14 @@ use App\Http\Controllers\frontend\WishlistController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
+
+Livewire::setScriptRoute(function ($handle) {
+    return Route::get('/livewire/livewire.js', $handle);
+});
+Livewire::setUpdateRoute(function ($handle) {
+    return Route::post('/livewire/livewire/update', $handle);
+});
 
 //Route::get('test', [HomeController::class, 'index'])->name('test');
 Route::get('/buser', function () {
