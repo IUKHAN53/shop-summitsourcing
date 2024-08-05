@@ -158,6 +158,7 @@ class SyncPalletProducts extends Command
             $this->info("Fetching details for product ID: $productId... (" . $iteration . "/" . $count . ")");
             $data = $this->getProductDetails($productId, $alibaba);
             if (!isset($data['result']) || !isset($data['result']['result'])) {
+                $iteration++;
                 continue;
             }
             $result = $data['result']['result'];
