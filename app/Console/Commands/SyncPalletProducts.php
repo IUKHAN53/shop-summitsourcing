@@ -152,6 +152,7 @@ class SyncPalletProducts extends Command
             // Check if the product already exists in the database
             if (Product::where('offerId', $productId)->exists()) {
                 $this->info("Product ID: $productId already exists. Skipping...");
+                $iteration++;
                 continue;
             }
 
