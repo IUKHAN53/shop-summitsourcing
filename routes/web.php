@@ -37,6 +37,7 @@ Route::get('/initialize', function (){
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 Route::get('products', [ProductController::class, 'searchProducts'])->name('search-products');
+Route::get('categories', [HomeController::class, 'categories'])->name('home.categories');
 Route::get('dropshipping', [ProductController::class, 'searchDropshippingProducts'])->name('dropshipping');
 Route::get('category/{id}/products', [ProductController::class, 'categoryProducts'])->name('cat-products');
 Route::get('palletProducts', [ProductController::class, 'getPalletProducts'])->name('pallet-products');

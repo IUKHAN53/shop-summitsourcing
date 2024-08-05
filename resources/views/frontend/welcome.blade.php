@@ -8,7 +8,7 @@
                         <div class="categories-dropdown-wrap style-2 font-heading mt-30">
                             <div class="d-flex categori-dropdown-inner">
                                 <ul>
-                                    @foreach($categories as $category)
+                                    @foreach($top_categories as $category)
                                         <li>
                                             <a href="{{route('cat-products', $category->id)}}">
                                                 <img src="{{$category->image}}" alt=""/>{{$category->name}}
@@ -68,7 +68,7 @@
                 </div>
                 <div class="carausel-10-columns-cover position-relative">
                     <div class="carausel-10-columns" id="carausel-10-columns">
-                        @foreach($categories as $category)
+                        @foreach($featured_categories as $category)
                             <div class="card-2 bg-9 wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                                 <figure class="img-hover-scale overflow-hidden">
                                     <a href="{{route('cat-products', $category->id)}}">

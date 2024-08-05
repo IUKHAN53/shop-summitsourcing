@@ -39,6 +39,12 @@ class CategoryResource extends Resource
                 Forms\Components\TextInput::make('pallet_id')
                     ->maxLength(255)
                     ->numeric(),
+                Forms\Components\Checkbox::make('is_top')
+                    ->label('Is Top Category')
+                    ->default(false),
+                Forms\Components\Checkbox::make('is_featured')
+                    ->label('Is Featured Category')
+                    ->default(false),
             ]);
     }
 
@@ -51,6 +57,16 @@ class CategoryResource extends Resource
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('icon'),
                 Tables\Columns\TextColumn::make('pallet_id'),
+                Tables\Columns\IconColumn::make('is_top')
+                    ->label('Top')
+                    ->icon(function (Category $record) {
+                        return $record->is_top ? 'heroicon-s-star' : 'heroicon-o-star';
+                    }),
+                Tables\Columns\IconColumn::make('is_featured')
+                    ->label('Featured')
+                    ->icon(function (Category $record) {
+                        return $record->is_featured ? 'heroicon-s-star' : 'heroicon-o-star';
+                    }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable(),

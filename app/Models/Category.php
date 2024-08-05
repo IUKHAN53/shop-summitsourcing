@@ -10,7 +10,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'leaf', 'level', 'parent_id','alibaba_id','icon','pallet_id'];
+    protected $fillable = ['name', 'leaf', 'level', 'parent_id','alibaba_id','icon','pallet_id', 'is_top', 'is_featured'];
 
     public function parent()
     {
@@ -25,6 +25,16 @@ class Category extends Model
     public function scopeRoot($query)
     {
         return $query->whereNull('parent_id');
+    }
+
+    public function scopeTop($query)
+    {
+        return $query->where('is_top', true);
+    }
+
+    public function scopeFeatured($query)
+    {
+        return $query->where('is_featured', true);
     }
 
     public function getImageAttribute()

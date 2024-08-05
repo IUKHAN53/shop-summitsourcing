@@ -57,7 +57,7 @@ class SyncPalletProducts extends Command
 
     private function syncBestSellingProducts(AlibabaService $alibaba, ?int $limit)
     {
-        $palletId = 218873525;
+        $palletId = 3214452;
 
         $this->info("Fetching total number of best selling products for pallet ID: $palletId...");
         $totalBestSelling = $this->getTotalProductsCount($alibaba, $palletId);

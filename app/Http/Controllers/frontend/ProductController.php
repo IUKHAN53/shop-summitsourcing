@@ -18,6 +18,14 @@ class ProductController extends Controller
 
     public function searchProducts(Request $request)
     {
+        $searchTerm = $request->input('search');
+        $urlPattern = '/https?:\/\/(?:m\.)?1688\.com\/offer\/(\d+)/';
+
+        if (preg_match($urlPattern, $searchTerm, $matches)) {
+            $productId = $matches[1];
+            return redirect()->route('product-detail', ['id' => $productId]);
+        }
+
         if ($request->file('image')) {
             $alibaba = new \App\Services\AlibabaService();
             $file = base64_encode(file_get_contents($request->file('image')));

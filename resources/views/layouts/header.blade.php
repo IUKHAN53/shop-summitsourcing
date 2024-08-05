@@ -137,7 +137,7 @@
                                         <a href="{{route('welcome')}}">Home</a>
                                     </li>
                                     <li class="hot-deals">
-                                        <a href="#">Categories</a>
+                                        <a href="{{route('home.categories')}}">Categories</a>
                                     </li>
                                     <li class="hot-deals">
                                         <a href="{{route('dropshipping')}}">Dropshipping</a>
@@ -148,6 +148,9 @@
                                     <li class="hot-deals">
                                         <a href="{{route('static-page','about_us')}}">About Us</a>
                                     </li>
+{{--                                    <li class="hot-deals">--}}
+{{--                                        <a href="{{route('static-page','blog')}}">Blog</a>--}}
+{{--                                    </li>--}}
                                 </ul>
                             </nav>
                         </div>
@@ -264,7 +267,7 @@
                 <nav>
                     <ul class="mobile-menu font-heading">
                         <li><a href="{{route('welcome')}}">Home</a></li>
-                        <li><a href="#">Categories</a></li>
+                        <li><a href="{{route('home.categories')}}">Categories</a></li>
                         <li><a href="{{route('static-page','dropshipping')}}">Dropshipping</a></li>
                         <li><a href="{{route('static-page','services')}}">Our Services</a></li>
                         <li><a href="{{route('static-page','about_us')}}">About Us</a></li>
