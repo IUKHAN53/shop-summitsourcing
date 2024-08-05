@@ -169,7 +169,7 @@ class SyncPalletProducts extends Command
                 'quantity' => $result['productSaleInfo']['amountOnSale'],
                 'sold' => $result['soldOut'] ?? 0,
                 'price' => $result['productSaleInfo']['priceRangeList'][0]['price'],
-                'unit' => $result['productSaleInfo']['unitInfo']['transUnit'],
+                'unit' => isset($result['productSaleInfo']['unitInfo']) ? $result['productSaleInfo']['unitInfo']['transUnit'] : '',
                 'moq' => $result['minOrderQuantity'],
                 'rating' => $result['tradeScore'],
                 'type' => $type,
