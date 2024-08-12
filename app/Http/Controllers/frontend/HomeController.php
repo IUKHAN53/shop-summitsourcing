@@ -13,8 +13,8 @@ class HomeController extends Controller
     {
         $top_products = Product::query()->trending()->inRandomOrder()->limit(15)->get();
         $best_selling_products = Product::query()->bestSelling()->inRandomOrder()->limit(15)->get();
-        $top_categories = \App\Models\Category::top()->inRandomOrder()->limit(11)->get();
-        $featured_categories = \App\Models\Category::featured()->inRandomOrder()->limit(11)->get();
+        $top_categories = \App\Models\Category::top()->inRandomOrder()->limit(12)->orderBy('id')->get();
+        $featured_categories = \App\Models\Category::featured()->inRandomOrder()->limit(11)->orderBy('id')->get();
         return view('frontend.welcome', compact( 'top_products', 'best_selling_products', 'top_categories', 'featured_categories'));
     }
 

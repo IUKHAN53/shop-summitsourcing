@@ -194,4 +194,19 @@ class SyncPalletProducts extends Command
         ];
         return $alibaba->getProductDetails($params);
     }
+
+    function twoSum($nums, $target) {
+        $result = [];
+        foreach ($nums as $key => $value) {
+            $diff = $target - $value;
+            $array_without_key = array_diff_key($nums, [$key => $value]);
+            if (in_array($diff, $array_without_key)) {
+                $result[] = $key;
+            }
+        }
+        return $result;
+    }
+
+
+
 }
