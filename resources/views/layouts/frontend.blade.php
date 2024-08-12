@@ -100,5 +100,18 @@
 <script src="{{asset('assets/js/plugins/jquery.elevatezoom.js')}}"></script>
 <script src="{{asset('assets/js/main.js?v=5.3')}}"></script>
 <script src="{{asset('assets/js/shop.js?v=5.3')}}"></script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/66b9c83d146b7af4a439425e/1i52rcd12';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
 </body>
 </html>
