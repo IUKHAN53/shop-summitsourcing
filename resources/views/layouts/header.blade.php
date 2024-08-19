@@ -37,6 +37,8 @@
                                         </option>
                                         <option value="CNY" {{session('currency') == 'CNY' ? 'selected' : ''}}>CNY
                                         </option>
+                                        <option value="CNY" {{session('currency') == 'AED' ? 'selected' : ''}}>AED
+                                        </option>
                                         <option value="EUR" {{session('currency') == 'EUR' ? 'selected' : ''}}>EUR
                                         </option>
                                         <option value="GBP" {{session('currency') == 'GBP' ? 'selected' : ''}}>GBP
