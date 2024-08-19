@@ -41,30 +41,23 @@ if (!function_exists('convertCurrency')) {
 }
 
 if (!function_exists('formatCurrency')) {
-    function formatCurrency($amount, $currency)
+    function formatCurrency($amount, $currency): string
     {
-        switch ($currency) {
-            case 'USD':
-                return '$' . number_format($amount, 2);
-            case 'EUR':
-                return '€' . number_format($amount, 2);
-            case 'CNY':
-                return '¥' . number_format($amount, 2);
-            case 'GBP':
-                return '£' . number_format($amount, 2);
-            case 'PKR':
-                return '₨' . number_format($amount, 2);
-            case 'NZD':
-                return 'NZ$' . number_format($amount, 2);
-            case 'AUD':
-                return 'AU$' . number_format($amount, 2);
-            case 'INR':
-                return '₹' . number_format($amount, 2);
-            default:
-                return number_format($amount, 2) . ' ' . $currency;
-        }
+        return match ($currency) {
+            'USD' => '$' . number_format($amount, 2),
+            'EUR' => '€' . number_format($amount, 2),
+            'CNY' => '¥' . number_format($amount, 2),
+            'AED' => 'AED ' . number_format($amount, 2),
+            'GBP' => '£' . number_format($amount, 2),
+            'PKR' => '₨' . number_format($amount, 2),
+            'NZD' => 'NZ$' . number_format($amount, 2),
+            'AUD' => 'AU$' . number_format($amount, 2),
+            'INR' => '₹' . number_format($amount, 2),
+            default => number_format($amount, 2) . ' ' . $currency,
+        };
     }
 }
+
 
 if (!function_exists('shortenTitle')) {
     function shortenTitle($title): string
